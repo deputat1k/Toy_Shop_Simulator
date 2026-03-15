@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 namespace ToyShop.Gameplay
 {
@@ -12,9 +13,12 @@ namespace ToyShop.Gameplay
         private CharacterController _controller;
         private Vector3 _velocity;
 
+        private IInputProvider _inputProvider;
+
         private void Awake()
         { 
             _controller = GetComponent<CharacterController>();
+            _inputProvider = GetComponent<IInputProvider>();
         }
 
         private void Update()
@@ -25,16 +29,12 @@ namespace ToyShop.Gameplay
 
         private void MovePlayer()
         {
-           
-            float x = Input.GetAxisRaw("Horizontal");
-            float z = Input.GetAxisRaw("Vertical");
 
-          
-            Vector3 move = transform.right * x + transform.forward * z;
+            if (_inputProvider == null) return;
 
-            // Нормалізуємо вектор, щоб гравець не бігав по діагоналі швидше
-            if (move.magnitude > 1f) move.Normalize();
+            Vector2 input = _inputProvider.GetMovementDirection();
 
+            Vector3 move = transform.right * input.x + transform.forward * input.y;
             _controller.Move(move * (speed * Time.deltaTime));
         }
 

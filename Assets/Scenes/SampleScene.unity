@@ -422,7 +422,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 164698929595908492, guid: e417ee718727ab84083255173feb8071, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.73
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 164698929595908492, guid: e417ee718727ab84083255173feb8071, type: 3}
       propertyPath: m_LocalPosition.z
@@ -467,8 +467,28 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7199456991984679792, guid: e417ee718727ab84083255173feb8071, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 458329684043862106}
   m_SourcePrefab: {fileID: 100100000, guid: e417ee718727ab84083255173feb8071, type: 3}
+--- !u!1 &458329684043862105 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7199456991984679792, guid: e417ee718727ab84083255173feb8071, type: 3}
+  m_PrefabInstance: {fileID: 458329684043862104}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &458329684043862106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458329684043862105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a57cebeadbe48214c808f362a4ef0fc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ToyShop.Gameplay.DesktopInput
 --- !u!1001 &1995501301629795929
 PrefabInstance:
   m_ObjectHideFlags: 0
