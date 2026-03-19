@@ -14,7 +14,7 @@ namespace ToyShop.Infrastructure
 
             if (Physics.Raycast(origin.position, origin.forward, out RaycastHit hit, range, layerMask))
             {
-                return hit.collider.GetComponent<IInteractable>();
+                return hit.collider.GetComponentInParent<IInteractable>();
             }
 
             return null; // Нічого не знайшли

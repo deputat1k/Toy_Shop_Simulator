@@ -5,25 +5,25 @@ using ToyShop.Core.Interfaces;
 namespace ToyShop.Gameplay.Player
 {
     // Клас сам виступає провайдером точки утримання
-    public class PlayerInteractor : MonoBehaviour, IHoldPointProvider
+    public class PlayerInteractor : MonoBehaviour, IHoldPointProvider, IInteractor
     {
         [Header("Settings")]
         [SerializeField] private float _interactRange = 3f;
         [SerializeField] private LayerMask _interactLayer;
         [SerializeField] private Transform _holdPosition;
+        [SerializeField] private Camera _camera;
 
         private IInputProvider _inputProvider;
         private IInteractionScanner _scanner;
-        private Camera _camera;
-
         private IInteractable _currentInteractable;
+        public IHoldPointProvider HoldPoint => this;
 
         [Inject]
         public void Construct(IInputProvider inputProvider, IInteractionScanner scanner, Camera mainCamera)
         {
             _inputProvider = inputProvider;
             _scanner = scanner;
-            _camera = mainCamera;
+           
         }
 
         
@@ -39,19 +39,21 @@ namespace ToyShop.Gameplay.Player
 
         private void HandleInteraction()
         {
-            // Відпускаємо предмет
-            if (_currentInteractable != null)
+            if (_currentInteractable == null)
             {
-                _currentInteractable.Interact(null);
-                _currentInteractable = null;
-                return;
-            }
+                _currentInteractable = _scanner.Scan(_camera.transform, _interactRange, _interactLayer);
 
-            // Беремо предмет
-            _currentInteractable = _scanner.Scan(_camera.transform, _interactRange, _interactLayer);
-            if (_currentInteractable != null)
+                if (_currentInteractable != null)
+                {
+                   
+                    _currentInteractable.Interact(this);
+                }
+            }
+            else
             {
+            
                 _currentInteractable.Interact(this);
+                _currentInteractable = null;
             }
         }
     }
