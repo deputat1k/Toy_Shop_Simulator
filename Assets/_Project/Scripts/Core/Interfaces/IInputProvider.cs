@@ -6,5 +6,6 @@ namespace ToyShop.Core.Interfaces
     {
         Vector2 GetMovementDirection();
         bool IsInteractActionTriggered();
+        bool IsThrowActionTriggered();
     }
 }

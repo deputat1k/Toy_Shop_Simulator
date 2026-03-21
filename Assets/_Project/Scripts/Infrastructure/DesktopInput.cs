@@ -13,5 +13,10 @@ namespace ToyShop.Infrastructure
         }
 
         public bool IsInteractActionTriggered() => Input.GetKeyDown(KeyCode.E);
+        public bool IsThrowActionTriggered()
+        {
+            // 0 - це ліва кнопка миші
+            return Input.GetMouseButtonDown(0);
+        }
     }
 }

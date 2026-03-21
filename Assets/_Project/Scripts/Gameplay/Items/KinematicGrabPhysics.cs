@@ -1,49 +1,96 @@
+using System;
 using UnityEngine;
 using ToyShop.Core.Interfaces;
 
 namespace ToyShop.Gameplay.Items
 {
-
     [RequireComponent(typeof(Rigidbody), typeof(Collider))]
     public class KinematicGrabPhysics : MonoBehaviour, IItemGrabbable
     {
+        [Header("Settings")]
+        [SerializeField] private float _throwMultiplier = 1f;
+        [SerializeField] private string _heldLayerName = "HeldItem";
+
         private Rigidbody _rigidbody;
-        private Collider _collider;
+        private int _originalLayer;
+        private int _heldLayer;
+
+        // Реалізація подій з інтерфейсу
+        public event Action OnGrabbed;
+        public event Action OnDropped;
+        public event Action OnThrown;
 
         public bool IsHeld { get; private set; }
+        public IItemHolder CurrentHolder { get; private set; }
 
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
-            _collider = GetComponent<Collider>();
+            _heldLayer = LayerMask.NameToLayer(_heldLayerName);
+
+            if (_heldLayer == -1)
+            {
+                Debug.LogError($"Шар '{_heldLayerName}' не знайдено! Створи його в налаштуваннях Unity.");
+            }
         }
 
-        public void Grab(Transform holdPointTransform)
+        public void Grab(IItemHolder holder)
         {
+            if (IsHeld) return; // Guard clause
+
             IsHeld = true;
+            CurrentHolder = holder;
 
-          
+
+            holder.HeldItem = this;
+
+            _originalLayer = gameObject.layer;
+            if (_heldLayer != -1) gameObject.layer = _heldLayer;
+
             _rigidbody.isKinematic = true;
-            _collider.enabled = false;
 
-            // Робимо предмет дочірнім до камери (точки утримання)
-            transform.SetParent(holdPointTransform);
-
-            // Центруємо предмет рівно в точці
+            Transform holdPoint = holder.GetHoldTransform();
+            transform.SetParent(holdPoint);
             transform.localPosition = Vector3.zero;
             transform.localRotation = Quaternion.identity;
+
+            OnGrabbed?.Invoke(); 
         }
 
         public void Drop()
         {
-            IsHeld = false;
+            if (!IsHeld) return;
+
+          
+            gameObject.layer = _originalLayer;
+            transform.SetParent(null);
+            _rigidbody.isKinematic = false;
 
            
-            transform.SetParent(null);
+            if (CurrentHolder != null && CurrentHolder.HeldItem == (IItemGrabbable)this)
+            {
+                CurrentHolder.HeldItem = null;
+            }
 
-            // Вмикаємо гравітацію та колізію назад
-            _rigidbody.isKinematic = false;
-            _collider.enabled = true;
+            CurrentHolder = null;
+            IsHeld = false;
+
+            OnDropped?.Invoke();
+        }
+
+        public void Throw(Vector3 appliedForce)
+        {
+            if (!IsHeld || CurrentHolder == null) return;
+
+            Vector3 throwVelocity = CurrentHolder.Velocity;
+
+            Drop();
+
+            Vector3 finalForce = (appliedForce * _throwMultiplier) + throwVelocity;
+
+            _rigidbody.AddForce(finalForce, ForceMode.Impulse);
+
+            OnThrown?.Invoke();
         }
     }
 }

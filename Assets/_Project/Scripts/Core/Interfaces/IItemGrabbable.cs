@@ -1,12 +1,24 @@
+using System;
 using UnityEngine;
 
 namespace ToyShop.Core.Interfaces
 {
-    // Контракт виключно для предметів, які фізично можна взяти в руки
+   
     public interface IItemGrabbable
     {
+     
+        event Action OnGrabbed;
+        event Action OnDropped;
+        event Action OnThrown;
+
         bool IsHeld { get; }
-        void Grab(Transform holdPointTransform);
+
+        
+        IItemHolder CurrentHolder { get; }
+
+        // Замість простої точки, передаємо всього власника рук
+        void Grab(IItemHolder holder);
         void Drop();
+        void Throw(Vector3 appliedForce);
     }
 }
