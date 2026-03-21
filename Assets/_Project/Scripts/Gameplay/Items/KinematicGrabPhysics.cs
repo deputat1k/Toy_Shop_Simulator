@@ -15,7 +15,7 @@ namespace ToyShop.Gameplay.Items
         private int _originalLayer;
         private int _heldLayer;
 
-        // Реалізація подій з інтерфейсу
+        // Implementing events from the interface
         public event Action OnGrabbed;
         public event Action OnDropped;
         public event Action OnThrown;
@@ -30,7 +30,7 @@ namespace ToyShop.Gameplay.Items
 
             if (_heldLayer == -1)
             {
-                Debug.LogError($"Шар '{_heldLayerName}' не знайдено! Створи його в налаштуваннях Unity.");
+                Debug.LogError($"Layer '{_heldLayerName}' not found! Create it in Unity settings.");
             }
         }
 

@@ -4,7 +4,7 @@ using ToyShop.Core.Interfaces;
 
 namespace ToyShop.Gameplay
 {
-    // RequireComponent гарантуЇ, що на гравц≥ точно Ї CharacterController
+    // RequireComponent ensures that the player definitely has a CharacterController
     [RequireComponent(typeof(CharacterController))]
     public class PlayerInteractor : MonoBehaviour, IInteractor, IItemHolder
     {
@@ -52,7 +52,7 @@ namespace ToyShop.Gameplay
 
         private void HandleInteraction()
         {
-            // якщо вже щось тримаЇмо Ч в≥дпускаЇмо п≥д ноги
+            // If we hold onto something, we let it go under our feet
             if (HeldItem != null)
             {
                 HeldItem.Drop();
@@ -66,8 +66,8 @@ namespace ToyShop.Gameplay
 
         private void HandleThrow()
         {
-            // –ахуЇмо т≥льки вектор напр€мку в≥д камери * базову силу
-            Vector3 throwDirection = _camera.transform.forward * _baseThrowForce;
+            //  We calculate only the direction vector from the camera *the base force
+                        Vector3 throwDirection = _camera.transform.forward * _baseThrowForce;
 
           
             HeldItem.Throw(throwDirection);

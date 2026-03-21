@@ -16,7 +16,7 @@ namespace ToyShop.Core.Interfaces
         
         IItemHolder CurrentHolder { get; }
 
-        // Замість простої точки, передаємо всього власника рук
+        // Instead of a simple dot, we pass the entire owner of the hand
         void Grab(IItemHolder holder);
         void Drop();
         void Throw(Vector3 appliedForce);

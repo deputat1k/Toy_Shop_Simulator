@@ -7,7 +7,7 @@ namespace ToyShop.Infrastructure
     {
         public IInteractable Scan(Transform origin, float range, LayerMask layerMask)
         {
-            // Малюємо промінь тільки в редакторі
+            // We draw a ray only in the editor
 #if UNITY_EDITOR
             Debug.DrawRay(origin.position, origin.forward * range, Color.green, 0.1f);
 #endif
@@ -17,7 +17,7 @@ namespace ToyShop.Infrastructure
                 return hit.collider.GetComponentInParent<IInteractable>();
             }
 
-            return null; // Нічого не знайшли
+            return null; // Nothing was found
         }
     }
 }

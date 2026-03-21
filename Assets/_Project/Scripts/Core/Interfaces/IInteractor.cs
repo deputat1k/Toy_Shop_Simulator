@@ -1,6 +1,6 @@
 namespace ToyShop.Core.Interfaces
 {
-    // —утн≥сть, €ка ≥н≥ц≥юЇ взаЇмод≥ю
+    // Entity that initiates interaction
     public interface IInteractor
     {
     
