@@ -17,7 +17,7 @@ namespace ToyShop.Data
         public float sellPrice;       
 
         [Header("Visual")]
-        public GameObject prefab;     // 3D model of a toy that will stand on the shelves³
+        public GameObject prefab;     // 3D model of a toy that will stand on the shelvesÂ³
         public Sprite icon;           // 2D icon for tablet for shopping
     }
 }
