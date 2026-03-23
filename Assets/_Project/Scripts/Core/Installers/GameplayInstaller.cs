@@ -1,7 +1,8 @@
+using ToyShop.Core.Interfaces;
+using ToyShop.Gameplay.Factories;
+using ToyShop.Infrastructure;
 using UnityEngine;
 using Zenject;
-using ToyShop.Core.Interfaces;
-using ToyShop.Infrastructure;
 
 namespace ToyShop.Core.Installers
 {
@@ -21,6 +22,9 @@ namespace ToyShop.Core.Installers
            
             Container.Bind<Camera>()
                 .FromComponentInHierarchy()
+                .AsSingle();
+
+            Container.Bind<ToyFactory>()
                 .AsSingle();
         }
     }

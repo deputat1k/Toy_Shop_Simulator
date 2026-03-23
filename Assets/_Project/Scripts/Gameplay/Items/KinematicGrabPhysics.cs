@@ -5,7 +5,7 @@ using ToyShop.Core.Interfaces;
 namespace ToyShop.Gameplay.Items
 {
     [RequireComponent(typeof(Rigidbody), typeof(Collider))]
-    public class KinematicGrabPhysics : MonoBehaviour, IItemGrabbable
+    public class KinematicGrabPhysics : MonoBehaviour, IItemGrabbable, IPlaceable, IContainerProvider
     {
         [Header("Settings")]
         [SerializeField] private float _throwMultiplier = 1f;
@@ -91,6 +91,20 @@ namespace ToyShop.Gameplay.Items
             _rigidbody.AddForce(finalForce, ForceMode.Impulse);
 
             OnThrown?.Invoke();
+        }
+
+        public void PlaceAt(Transform targetTransform)
+        {
+         
+            _rigidbody.isKinematic = true;
+            transform.position = targetTransform.position;
+            transform.rotation = targetTransform.rotation;
+        }
+
+        public bool TryGetContainer(out IItemContainer container)
+        {
+            container = GetComponent<IItemContainer>();
+            return container != null;
         }
     }
 }
