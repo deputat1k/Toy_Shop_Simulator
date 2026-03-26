@@ -8,7 +8,7 @@ namespace ToyShop.Core.Interfaces
         Transform SlotTransform { get; }
         Quaternion PlacementRotation { get; }
 
-        void Occupy(IItemGrabbable item);
+        void Occupy(IPlaceable item);
         void Free();
     }
 }

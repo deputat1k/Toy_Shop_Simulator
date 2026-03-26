@@ -9,23 +9,39 @@ namespace ToyShop.Gameplay.Environment
         public Transform SlotTransform => transform;
         public Quaternion PlacementRotation => transform.rotation;
 
-        private IItemGrabbable _currentItem;
+        private IPlaceable _currentItem;
 
-        public void Occupy(IItemGrabbable item)
+        // Now we only accept what we can put
+        public void Occupy(IPlaceable item)
         {
             IsOccupied = true;
             _currentItem = item;
 
-            if (item is IPlaceable placeable)
-            {
-                placeable.PlaceAt(SlotTransform);
-            }
+            item.PlaceAt(SlotTransform);
+            item.OnRemovedFromPlacement += HandleItemRemoved;
+        }
+
+        private void HandleItemRemoved()
+        {
+            Free();
         }
 
         public void Free()
         {
+            if (_currentItem != null)
+            {
+                _currentItem.OnRemovedFromPlacement -= HandleItemRemoved;
+                _currentItem = null;
+            }
             IsOccupied = false;
-            _currentItem = null;
+        }
+
+        private void OnDestroy()
+        {
+            if (_currentItem != null)
+            {
+                _currentItem.OnRemovedFromPlacement -= HandleItemRemoved;
+            }
         }
     }
 }

@@ -19,51 +19,58 @@ namespace ToyShop.Gameplay.Environment
 
         public void ProcessInteraction(IItemHolder holder)
         {
-            if (holder.HeldItem == null) return;
+            var heldItem = holder.HeldItem;
+            if (heldItem == null) return;
 
-            if (holder.HeldItem is IContainerProvider provider && provider.TryGetContainer(out var container))
-            {
-                if (!container.CanExtract)
-                {
-                    OnEmptyContainerProvided?.Invoke();
-                    return;
-                }
+            if (TryHandleContainer(heldItem)) return;
 
-                if (!TryGetEmptySlot(out var slot))
-                {
-                    OnShelfFull?.Invoke();
-                    return;
-                }
-
-                if (container.TryExtract(out var item))
-                {
-                    slot.Occupy(item);
-                }
-                return;
-            }
-
-         
-            if (holder.HeldItem is IPlaceable placeableItem)
-            {
-                if (!TryGetEmptySlot(out var slot))
-                {
-                    OnShelfFull?.Invoke();
-                    return;
-                }
-
-                var itemToPlace = holder.HeldItem;
-
-               
-                itemToPlace.Drop();
-
-                slot.Occupy(itemToPlace);
-            }
+            TryHandleSingleItem(holder);
         }
 
         private bool TryGetEmptySlot(out IShelfSlot emptySlot)
         {
             emptySlot = _slots.FirstOrDefault(slot => !slot.IsOccupied);
             return emptySlot != null;
+        }
+
+        private bool TryHandleContainer(IItemGrabbable heldItem)
+        {
+            if (heldItem is IContainerProvider provider && provider.TryGetContainer(out var container))
+            {
+                if (!container.CanExtract)
+                {
+                    OnEmptyContainerProvided?.Invoke();
+                    return true; 
+                }
+
+                if (!TryGetEmptySlot(out var slot))
+                {
+                    OnShelfFull?.Invoke();
+                    return true;
+                }
+
+                if (container.TryExtract(out var item) && item is IPlaceable placeable)
+                {
+                    slot.Occupy(placeable);
+                }
+                return true; 
+            }
+            return false; 
+        }
+
+        private void TryHandleSingleItem(IItemHolder holder)
+        {
+            if (!TryGetEmptySlot(out var slot))
+            {
+                OnShelfFull?.Invoke();
+                return;
+            }
+
+            if (holder.HeldItem is IPlaceable placeable)
+            {
+                holder.HeldItem.Drop(); // Freeing our hands
+                slot.Occupy(placeable);
+            }
         }
     }
 }

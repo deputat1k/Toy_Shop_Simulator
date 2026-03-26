@@ -19,7 +19,7 @@ namespace ToyShop.Gameplay.Factories
         {
             if (toyData == null || toyData.prefab == null)
             {
-                Debug.LogError("ToyFactory: ToyData або prefab відсутні!");
+                Debug.LogError("ToyFactory: ToyData or prefab missing!");
                 return null;
             }
 

@@ -586,16 +586,28 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 635596840713074028, guid: 367a34f974be83b45bac0dc9dfbcd031, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.019778358
+      objectReference: {fileID: 0}
+    - target: {fileID: 635596840713074028, guid: 367a34f974be83b45bac0dc9dfbcd031, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.024693882
+      objectReference: {fileID: 0}
+    - target: {fileID: 635596840713074028, guid: 367a34f974be83b45bac0dc9dfbcd031, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.029133841
+      objectReference: {fileID: 0}
+    - target: {fileID: 635596840713074028, guid: 367a34f974be83b45bac0dc9dfbcd031, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.6772301
+      value: -1.6714
       objectReference: {fileID: 0}
     - target: {fileID: 635596840713074028, guid: 367a34f974be83b45bac0dc9dfbcd031, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.00000007749017
+      value: 0.28
       objectReference: {fileID: 0}
     - target: {fileID: 635596840713074028, guid: 367a34f974be83b45bac0dc9dfbcd031, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.1046205
+      value: 3.1036
       objectReference: {fileID: 0}
     - target: {fileID: 635596840713074028, guid: 367a34f974be83b45bac0dc9dfbcd031, type: 3}
       propertyPath: m_LocalRotation.w
@@ -615,7 +627,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 635596840713074028, guid: 367a34f974be83b45bac0dc9dfbcd031, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 635596840713074028, guid: 367a34f974be83b45bac0dc9dfbcd031, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -802,7 +814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ee4ed46e125b2641afddb184add294d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToyShop.Gameplay.Items.KinematicGrabPhysics
-  _throwMultiplier: 1
+  _throwMultiplier: 0.6
   _heldLayerName: HeldItem
 --- !u!114 &1475729600
 MonoBehaviour:
@@ -817,7 +829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToyShop.Gameplay.Items.BoxContainer
   _toyData: {fileID: 11400000, guid: c651137fbb0502b4c86422ccbaccc40a, type: 2}
-  _itemCount: 3
+  _itemCount: 1
 --- !u!1001 &1530795534
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1009,15 +1021,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6649656691319514814, guid: 7d8db6affa7de8545b88f13fd9bc848e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.0019537117
+      value: 0.0024853167
       objectReference: {fileID: 0}
     - target: {fileID: 6649656691319514814, guid: 7d8db6affa7de8545b88f13fd9bc848e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.001036833
+      value: 0.0021802546
       objectReference: {fileID: 0}
     - target: {fileID: 6649656691319514814, guid: 7d8db6affa7de8545b88f13fd9bc848e, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.0011250497
+      value: 0.0034969135
       objectReference: {fileID: 0}
     - target: {fileID: 6649656691319514814, guid: 7d8db6affa7de8545b88f13fd9bc848e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1025,11 +1037,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6649656691319514814, guid: 7d8db6affa7de8545b88f13fd9bc848e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.12
+      value: 2.0219
       objectReference: {fileID: 0}
     - target: {fileID: 6649656691319514814, guid: 7d8db6affa7de8545b88f13fd9bc848e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.685
+      value: 4.6988
       objectReference: {fileID: 0}
     - target: {fileID: 6649656691319514814, guid: 7d8db6affa7de8545b88f13fd9bc848e, type: 3}
       propertyPath: m_LocalRotation.w

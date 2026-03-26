@@ -1,6 +1,7 @@
 using System;
-using UnityEngine;
 using ToyShop.Core.Interfaces;
+using UnityEngine;
+using static UnityEngine.UI.Image;
 
 namespace ToyShop.Gameplay.Items
 {
@@ -19,6 +20,7 @@ namespace ToyShop.Gameplay.Items
         public event Action OnGrabbed;
         public event Action OnDropped;
         public event Action OnThrown;
+        public event Action OnRemovedFromPlacement;
 
         public bool IsHeld { get; private set; }
         public IItemHolder CurrentHolder { get; private set; }
@@ -28,6 +30,9 @@ namespace ToyShop.Gameplay.Items
             _rigidbody = GetComponent<Rigidbody>();
             _heldLayer = LayerMask.NameToLayer(_heldLayerName);
 
+            // Keep the original layer
+            _originalLayer = gameObject.layer;
+
             if (_heldLayer == -1)
             {
                 Debug.LogError($"Layer '{_heldLayerName}' not found! Create it in Unity settings.");
@@ -36,38 +41,40 @@ namespace ToyShop.Gameplay.Items
 
         public void Grab(IItemHolder holder)
         {
-            if (IsHeld) return; // Guard clause
+            if (IsHeld) return;
 
             IsHeld = true;
             CurrentHolder = holder;
 
-
+        
             holder.HeldItem = this;
 
-            _originalLayer = gameObject.layer;
+           
             if (_heldLayer != -1) gameObject.layer = _heldLayer;
 
             _rigidbody.isKinematic = true;
-
             Transform holdPoint = holder.GetHoldTransform();
             transform.SetParent(holdPoint);
             transform.localPosition = Vector3.zero;
             transform.localRotation = Quaternion.identity;
 
-            OnGrabbed?.Invoke(); 
+            OnGrabbed?.Invoke();
+            OnRemovedFromPlacement?.Invoke();
         }
 
         public void Drop()
         {
             if (!IsHeld) return;
 
-          
+    
             gameObject.layer = _originalLayer;
+
+          
             transform.SetParent(null);
             _rigidbody.isKinematic = false;
 
-           
-            if (CurrentHolder != null && CurrentHolder.HeldItem == (IItemGrabbable)this)
+      
+            if (CurrentHolder != null)
             {
                 CurrentHolder.HeldItem = null;
             }
