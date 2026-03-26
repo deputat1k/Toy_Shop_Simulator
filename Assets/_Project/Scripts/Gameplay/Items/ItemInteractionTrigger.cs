@@ -18,6 +18,9 @@ namespace ToyShop.Gameplay.Items
 
             if (interactor is IItemHolder holder)
             {
+                // Guard Clause: If the hands are busy, the player cannot take a new item.
+                if (holder.HeldItem != null && !_grabbable.IsHeld) return;
+
                 if (!_grabbable.IsHeld)
                 {
                     _grabbable.Grab(holder);
@@ -28,5 +31,6 @@ namespace ToyShop.Gameplay.Items
                 }
             }
         }
-    }
+
+        }
 }

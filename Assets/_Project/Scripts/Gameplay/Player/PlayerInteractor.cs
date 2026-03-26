@@ -52,16 +52,21 @@ namespace ToyShop.Gameplay
 
         private void HandleInteraction()
         {
-            // If we hold onto something, we let it go under our feet
-            if (HeldItem != null)
-            {
-                HeldItem.Drop();
-                return;
-            }
-
-            
+           
             var interactable = _scanner.Scan(_camera.transform, _interactRange, _interactLayer);
-            interactable?.Interact(this);
+
+           
+            if (interactable != null)
+            {
+                
+                interactable.Interact(this);
+            }
+            
+            else if (HeldItem != null)
+            {
+                
+                HeldItem.Drop();
+            }
         }
 
         private void HandleThrow()
