@@ -12,9 +12,28 @@ namespace ToyShop.Gameplay.Environment
         public event Action OnShelfFull;
         public event Action OnEmptyContainerProvided;
 
+
+        public ShelfManager(IShelfSlot[] slots = null)
+        {
+            _slots = slots ?? System.Array.Empty<IShelfSlot>();
+        }
         private void Awake()
         {
-            _slots = GetComponentsInChildren<IShelfSlot>();
+            if (_slots == null || _slots.Length == 0)
+            {
+                _slots = GetComponentsInChildren<IShelfSlot>();
+            }
+        }
+
+        public void Initialize(IShelfSlot[] slots)
+        {
+            _slots = slots;
+        }
+
+       
+        public bool HasEmptySlot
+        {
+            get { return _slots.Any(slot => !slot.IsOccupied); }
         }
 
         public void ProcessInteraction(IItemHolder holder)
