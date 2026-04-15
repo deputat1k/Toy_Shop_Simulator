@@ -44,7 +44,7 @@ namespace ToyShop.UI.HUD
         {
             if (_view == null) return;
 
-            // Якщо планшет відкрито -> ховаємо HUD. Якщо закрито -> показуємо.
+            // If the tablet is open, we hide the HUD. If it is closed, we show it.
             if (signal.IsOpen) _view.Hide();
             else _view.Show();
         }

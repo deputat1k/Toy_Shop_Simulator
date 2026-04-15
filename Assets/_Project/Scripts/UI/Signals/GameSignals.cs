@@ -1,14 +1,14 @@
-// Сигнал, який просто кричить "Натиснуто Tab!"
+// The signal shouts "Tab pressed!"
 public struct InputTabletToggleSignal { }
 
-// Сигнал, який каже всій грі "Планшет тепер відкритий (або закритий)"
+// A signal that tells the entire game "The tablet is now open (or closed)"
 public struct TabletStateChangedSignal
 {
     public bool IsOpen { get; }
     public TabletStateChangedSignal(bool isOpen) { IsOpen = isOpen; }
 }
 
-// Сигнал для майбутнього HUD (гроші)
+// A signal for the HUD (money)
 public struct BalanceChangedSignal
 {
     public int NewBalance { get; }

@@ -7,14 +7,14 @@ namespace ToyShop.Gameplay.Player
     {
         private PlayerMovement _movement;
         private PlayerInteractor _interactor;
-        private MouseLook _mouseLook; // 1. Додали змінну для камери
+        private MouseLook _mouseLook;
 
         private void Awake()
         {
             _movement = GetComponent<PlayerMovement>();
             _interactor = GetComponent<PlayerInteractor>();
 
-            // 2. Шукаємо MouseLook (навіть якщо він висить глибше, на камері)
+            // Looking for MouseLook
             _mouseLook = GetComponentInChildren<MouseLook>();
         }
 
@@ -23,7 +23,7 @@ namespace ToyShop.Gameplay.Player
             if (_movement != null) _movement.enabled = false;
             if (_interactor != null) _interactor.enabled = false;
 
-            // 3. Вимикаємо обертання камери
+            // Turn off camera rotation
             if (_mouseLook != null) _mouseLook.enabled = false;
         }
 
@@ -32,7 +32,7 @@ namespace ToyShop.Gameplay.Player
             if (_movement != null) _movement.enabled = true;
             if (_interactor != null) _interactor.enabled = true;
 
-            // 4. Вмикаємо обертання камери
+            // Turn on camera rotation
             if (_mouseLook != null) _mouseLook.enabled = true;
         }
     }
