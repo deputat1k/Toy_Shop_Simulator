@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace ToyShop.Core.Interfaces
@@ -7,5 +8,7 @@ namespace ToyShop.Core.Interfaces
         Vector2 GetMovementDirection();
         bool IsInteractActionTriggered();
         bool IsThrowActionTriggered();
+
+        event Action OnTabletTogglePressed;
     }
 }
