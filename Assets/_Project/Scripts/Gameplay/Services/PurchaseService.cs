@@ -20,14 +20,13 @@ namespace ToyShop.Gameplay.Services
         public bool TryBuyToy(string toyId)
         {
             ToyData toy = _catalog.GetToyById(toyId);
-
             if (toy == null)
             {
                 _signalBus.Fire(new PurchaseResultSignal(toyId, false));
                 return false;
             }
 
-            bool success = _economy.TrySpend((int)toy.purchasePrice);
+            bool success = _economy.TrySpend(toy.PurchasePrice);
 
             _signalBus.Fire(new PurchaseResultSignal(toyId, success));
             return success;

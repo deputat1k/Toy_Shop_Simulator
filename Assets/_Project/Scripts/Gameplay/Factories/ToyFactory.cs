@@ -17,14 +17,14 @@ namespace ToyShop.Gameplay.Factories
 
         public IItemGrabbable Create(ToyData toyData, Vector3 position, Quaternion rotation)
         {
-            if (toyData == null || toyData.prefab == null)
+            if (toyData == null || toyData.Prefab == null)
             {
                 Debug.LogError("ToyFactory: ToyData or prefab missing!");
                 return null;
             }
 
             
-            GameObject instance = _instantiator.InstantiatePrefab(toyData.prefab, position, rotation, null);
+            GameObject instance = _instantiator.InstantiatePrefab(toyData.Prefab, position, rotation, null);
 
            
 

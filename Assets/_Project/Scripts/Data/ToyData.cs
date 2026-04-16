@@ -2,21 +2,21 @@ using UnityEngine;
 
 namespace ToyShop.Data
 {
-    [CreateAssetMenu(fileName = "NewToyData", menuName = "ToyShop/Toy Data")]
+    [CreateAssetMenu(fileName = "NewToyData", menuName = "ToyShop/Toy Data", order = 1)]
     public class ToyData : ScriptableObject
     {
         [Header("Basic information")]
-        public string toyId;
-        public string toyName;
+        public string Id;
+        public string DisplayName;
         [TextArea]
-        public string description;
+        public string Description;
 
         [Header("Economy")]
-        public float purchasePrice;
-        public float sellPrice;
+        public int PurchasePrice; 
+        public int SellPrice;     
 
         [Header("Visual")]
-        public GameObject prefab;
-        public Sprite icon;
+        public GameObject Prefab;
+        public Sprite Icon;
     }
 }

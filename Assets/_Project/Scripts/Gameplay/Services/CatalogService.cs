@@ -16,7 +16,7 @@ namespace ToyShop.Gameplay.Services
 
         public IReadOnlyList<ToyData> GetAllToys() => _database.Toys;
 
-        public ToyData GetToyById(string id)
-            => _database.Toys.FirstOrDefault(t => t.toyId == id);
+ 
+           public ToyData GetToyById(string id) => _database.Toys.FirstOrDefault(t => t.Id == id);
     }
 }

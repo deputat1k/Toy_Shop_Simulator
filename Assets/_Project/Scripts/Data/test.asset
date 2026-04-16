@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9875f43bcce268c47ae7bc9cf0eaeb5c, type: 3}
   m_Name: test
   m_EditorClassIdentifier: Assembly-CSharp::ToyShop.Data.ToyData
-  toyId: toy2
-  toyName: toy2
-  description: toy toy test
-  purchasePrice: 0
-  sellPrice: 0
-  prefab: {fileID: 6868941670310409484, guid: bd0ad8a2b274c08428282b63c8da6534, type: 3}
-  icon: {fileID: 0}
+  Id: 1
+  DisplayName: test
+  Description: karapyz
+  PurchasePrice: 20
+  SellPrice: 23
+  Prefab: {fileID: 6868941670310409484, guid: bd0ad8a2b274c08428282b63c8da6534, type: 3}
+  Icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}

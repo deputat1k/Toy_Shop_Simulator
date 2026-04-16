@@ -18,7 +18,7 @@ namespace ToyShop.Gameplay.Items
         public event Action OnItemExtracted;
         public event Action OnContainerEmpty;
 
-        public bool CanExtract => _itemCount > 0 && _toyData != null && _toyData.prefab != null;
+        public bool CanExtract => _itemCount > 0 && _toyData != null && _toyData.Prefab != null;
 
         [Inject]
         public void Construct(ToyFactory toyFactory)

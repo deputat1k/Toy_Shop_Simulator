@@ -16,6 +16,9 @@ namespace ToyShop.Core.Installers
                 [Header("Databases")]
         [SerializeField] private ToyDatabase _mainToyDatabase;
 
+        [Header("UI Prefabs")]
+        [SerializeField] private ToyShop.UI.Tablet.ShopItemView _shopItemPrefab;
+
         public override void InstallBindings()
         {
             // SYSTEM SERVICES
@@ -50,6 +53,14 @@ namespace ToyShop.Core.Installers
             //UI (HUD)
             Container.Bind<ToyShop.UI.HUD.HUDView>().FromComponentInHierarchy().AsSingle();
             Container.BindInterfacesTo<ToyShop.UI.HUD.HUDPresenter>().AsSingle().NonLazy();
+
+            //UI (Tablet)
+            Container.Bind<ToyShop.UI.Tablet.TabletView>().FromComponentInHierarchy().AsSingle();
+            Container.BindInterfacesTo<ToyShop.UI.Tablet.TabletPresenter>().AsSingle().NonLazy();
+
+            Container.BindFactory<Transform, ToyShop.UI.Tablet.ShopItemView, ToyShop.UI.Tablet.ShopItemView.Factory>()
+                     .FromComponentInNewPrefab(_shopItemPrefab)
+                     .AsSingle();
         }
     }
 }
