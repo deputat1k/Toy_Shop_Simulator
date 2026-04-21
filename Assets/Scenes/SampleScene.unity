@@ -119,6 +119,50 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &14983023
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 14983024}
+  - component: {fileID: 14983025}
+  m_Layer: 6
+  m_Name: Slot_3 (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &14983024
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14983023}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9, y: 1038, z: 411}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1647430315}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &14983025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14983023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3caa193f843d0c4dad58d39bf0d826c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ToyShop.Gameplay.Environment.ShelfSlot
 --- !u!1 &44950067
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,6 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToyShop.Core.Installers.GameplayInstaller
   _mainToyDatabase: {fileID: 11400000, guid: cf907245957a63549b001e80669ec957, type: 2}
   _shopItemPrefab: {fileID: 9013675901831719071, guid: b6b2a1d56c64b274fbac2e8740bd6a14, type: 3}
+  _boxPrefab: {fileID: 1475729600}
 --- !u!114 &44950069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,50 +279,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &145592203
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 145592204}
-  - component: {fileID: 145592205}
-  m_Layer: 6
-  m_Name: Slot_2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &145592204
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 145592203}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.012203366, y: 1068.1359, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1647430315}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!114 &145592205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 145592203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3caa193f843d0c4dad58d39bf0d826c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ToyShop.Gameplay.Environment.ShelfSlot
 --- !u!1 &170348322
 GameObject:
   m_ObjectHideFlags: 0
@@ -357,6 +358,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &323647416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 323647417}
+  - component: {fileID: 323647418}
+  m_Layer: 6
+  m_Name: Slot_3 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &323647417
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323647416}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9, y: 1038, z: 62}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1647430315}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &323647418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 323647416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3caa193f843d0c4dad58d39bf0d826c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ToyShop.Gameplay.Environment.ShelfSlot
 --- !u!1 &380885105
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,6 +717,94 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &599518260
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 599518261}
+  - component: {fileID: 599518262}
+  m_Layer: 6
+  m_Name: Slot_3 (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &599518261
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599518260}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9, y: 1038, z: -310}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1647430315}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &599518262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 599518260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3caa193f843d0c4dad58d39bf0d826c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ToyShop.Gameplay.Environment.ShelfSlot
+--- !u!1 &726597609
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 726597610}
+  - component: {fileID: 726597611}
+  m_Layer: 6
+  m_Name: Slot_3 (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &726597610
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726597609}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9, y: 81, z: 440}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1647430315}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &726597611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726597609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3caa193f843d0c4dad58d39bf0d826c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ToyShop.Gameplay.Environment.ShelfSlot
 --- !u!1 &802362527
 GameObject:
   m_ObjectHideFlags: 0
@@ -682,6 +815,7 @@ GameObject:
   m_Component:
   - component: {fileID: 802362528}
   - component: {fileID: 802362529}
+  - component: {fileID: 802362530}
   m_Layer: 5
   m_Name: Content
   m_TagString: Untagged
@@ -705,8 +839,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00029651623, y: -0.0006080645}
-  m_SizeDelta: {x: -0, y: 298.85}
+  m_AnchoredPosition: {x: -0.00011565733, y: -0.0006080645}
+  m_SizeDelta: {x: -0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &802362529
 MonoBehaviour:
@@ -728,10 +862,24 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 100, y: 100}
-  m_Spacing: {x: 0, y: 0}
-  m_Constraint: 0
-  m_ConstraintCount: 2
+  m_CellSize: {x: 500, y: 150}
+  m_Spacing: {x: 0, y: 30}
+  m_Constraint: 1
+  m_ConstraintCount: 1
+--- !u!114 &802362530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802362527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -820,7 +968,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 653.546, y: 315.851}
+  m_SizeDelta: {x: 1012.837, y: 443.73}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &839972556
 MonoBehaviour:
@@ -972,8 +1120,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 380885107}
   m_HandleRect: {fileID: 380885106}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 0.9999998
+  m_Value: 1
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1179,7 +1327,7 @@ Transform:
   m_GameObject: {fileID: 966865346}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: -2.499993, y: 3.00001, z: 27.004892}
+  m_LocalPosition: {x: -7.4, y: -12.8, z: 14.2}
   m_LocalScale: {x: 0.12594272, y: 0.090074815, z: 0.10733363}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1287,6 +1435,94 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 979947689}
   m_CullTransparentMesh: 1
+--- !u!1 &1001830641
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1001830642}
+  - component: {fileID: 1001830643}
+  m_Layer: 6
+  m_Name: Slot_3 (6)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1001830642
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001830641}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9, y: 81, z: -131}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1647430315}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1001830643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001830641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3caa193f843d0c4dad58d39bf0d826c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ToyShop.Gameplay.Environment.ShelfSlot
+--- !u!1 &1086104073
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1086104074}
+  - component: {fileID: 1086104075}
+  m_Layer: 6
+  m_Name: Slot_3 (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1086104074
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086104073}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9, y: 81, z: 154}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1647430315}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1086104075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1086104073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3caa193f843d0c4dad58d39bf0d826c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ToyShop.Gameplay.Environment.ShelfSlot
 --- !u!1001 &1095667312
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1687,6 +1923,94 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToyShop.Gameplay.Items.BoxContainer
   _toyData: {fileID: 11400000, guid: c651137fbb0502b4c86422ccbaccc40a, type: 2}
   _itemCount: 3
+--- !u!1 &1493432577
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1493432578}
+  - component: {fileID: 1493432579}
+  m_Layer: 6
+  m_Name: Slot_3 (7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1493432578
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493432577}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9, y: 81, z: -420}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1647430315}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1493432579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493432577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3caa193f843d0c4dad58d39bf0d826c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ToyShop.Gameplay.Environment.ShelfSlot
+--- !u!1 &1495765871
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1495765873}
+  - component: {fileID: 1495765872}
+  m_Layer: 0
+  m_Name: DeliveryPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1495765872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495765871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c6957fca865118479d310a5ffb744da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ToyShop.Main::ToyShop.Gameplay.Environment.DeliveryPoint
+--- !u!4 &1495765873
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1495765871}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8, y: 0.03, z: 1.97}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1523376134
 GameObject:
   m_ObjectHideFlags: 0
@@ -2115,10 +2439,25 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6649656691319514814, guid: 7d8db6affa7de8545b88f13fd9bc848e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 145592204}
+      addedObject: {fileID: 323647417}
     - targetCorrespondingSourceObject: {fileID: 6649656691319514814, guid: 7d8db6affa7de8545b88f13fd9bc848e, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1814937375}
+      addedObject: {fileID: 14983024}
+    - targetCorrespondingSourceObject: {fileID: 6649656691319514814, guid: 7d8db6affa7de8545b88f13fd9bc848e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 726597610}
+    - targetCorrespondingSourceObject: {fileID: 6649656691319514814, guid: 7d8db6affa7de8545b88f13fd9bc848e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1086104074}
+    - targetCorrespondingSourceObject: {fileID: 6649656691319514814, guid: 7d8db6affa7de8545b88f13fd9bc848e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1001830642}
+    - targetCorrespondingSourceObject: {fileID: 6649656691319514814, guid: 7d8db6affa7de8545b88f13fd9bc848e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1493432578}
+    - targetCorrespondingSourceObject: {fileID: 6649656691319514814, guid: 7d8db6affa7de8545b88f13fd9bc848e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 599518261}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6782454032753223058, guid: 7d8db6affa7de8545b88f13fd9bc848e, type: 3}
       insertIndex: -1
@@ -2398,50 +2737,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1814937374
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1814937375}
-  - component: {fileID: 1814937376}
-  m_Layer: 6
-  m_Name: Slot_3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1814937375
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1814937374}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9, y: 1098, z: -365}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1647430315}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1814937376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1814937374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3caa193f843d0c4dad58d39bf0d826c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ToyShop.Gameplay.Environment.ShelfSlot
 --- !u!1 &1833607786
 GameObject:
   m_ObjectHideFlags: 0
@@ -3125,3 +3420,4 @@ SceneRoots:
   - {fileID: 170348325}
   - {fileID: 1833607791}
   - {fileID: 1523376141}
+  - {fileID: 1495765873}

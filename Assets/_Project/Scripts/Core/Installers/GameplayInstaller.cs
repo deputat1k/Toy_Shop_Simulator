@@ -19,6 +19,9 @@ namespace ToyShop.Core.Installers
         [Header("UI Prefabs")]
         [SerializeField] private ToyShop.UI.Tablet.ShopItemView _shopItemPrefab;
 
+        [Header("Item Prefabs")]
+        [SerializeField] private ToyShop.Gameplay.Items.BoxContainer _boxPrefab;
+
         public override void InstallBindings()
         {
             // SYSTEM SERVICES
@@ -61,6 +64,16 @@ namespace ToyShop.Core.Installers
             Container.BindFactory<Transform, ToyShop.UI.Tablet.ShopItemView, ToyShop.UI.Tablet.ShopItemView.Factory>()
                      .FromComponentInNewPrefab(_shopItemPrefab)
                      .AsSingle();
+
+
+            // DELIVERY SYSTEM
+            Container.BindInterfacesTo<ToyShop.Gameplay.Environment.DeliveryPoint>().FromComponentInHierarchy().AsSingle();
+
+            Container.BindFactory<ToyShop.Gameplay.Items.BoxContainer, ToyShop.Gameplay.Items.BoxContainer.Factory>()
+                     .FromComponentInNewPrefab(_boxPrefab)
+                     .AsSingle();
+
+            Container.BindInterfacesTo<ToyShop.Gameplay.Services.DeliveryService>().AsSingle().NonLazy();
         }
     }
 }

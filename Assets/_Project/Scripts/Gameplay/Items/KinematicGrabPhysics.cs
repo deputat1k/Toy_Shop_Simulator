@@ -12,6 +12,9 @@ namespace ToyShop.Gameplay.Items
         [SerializeField] private float _throwMultiplier = 1f;
         [SerializeField] private string _heldLayerName = "HeldItem";
 
+        [Header("Placement Fixes")]
+        [SerializeField] private float _placementHeightOffset = 0f;
+
         private Rigidbody _rigidbody;
         private int _originalLayer;
         private int _heldLayer;
@@ -39,6 +42,13 @@ namespace ToyShop.Gameplay.Items
             }
         }
 
+        public void PlaceAt(Transform targetTransform)
+        {
+            _rigidbody.isKinematic = true;
+            transform.position = targetTransform.position + Vector3.up * _placementHeightOffset;
+            transform.rotation = targetTransform.rotation;
+        }
+
         public void Grab(IItemHolder holder)
         {
             if (IsHeld) return;
@@ -46,10 +56,10 @@ namespace ToyShop.Gameplay.Items
             IsHeld = true;
             CurrentHolder = holder;
 
-        
+
             holder.HeldItem = this;
 
-           
+
             if (_heldLayer != -1) gameObject.layer = _heldLayer;
 
             _rigidbody.isKinematic = true;
@@ -66,14 +76,14 @@ namespace ToyShop.Gameplay.Items
         {
             if (!IsHeld) return;
 
-    
+
             gameObject.layer = _originalLayer;
 
-          
+
             transform.SetParent(null);
             _rigidbody.isKinematic = false;
 
-      
+
             if (CurrentHolder != null)
             {
                 CurrentHolder.HeldItem = null;
@@ -100,13 +110,7 @@ namespace ToyShop.Gameplay.Items
             OnThrown?.Invoke();
         }
 
-        public void PlaceAt(Transform targetTransform)
-        {
-         
-            _rigidbody.isKinematic = true;
-            transform.position = targetTransform.position;
-            transform.rotation = targetTransform.rotation;
-        }
+       
 
         public bool TryGetContainer(out IItemContainer container)
         {

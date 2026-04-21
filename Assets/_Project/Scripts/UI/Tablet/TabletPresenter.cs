@@ -73,8 +73,8 @@ namespace ToyShop.UI.Tablet
         {
             if (_view == null) return;
 
-            if (signal.Success) _view.ShowNotification("Успішно!", Color.green);
-            else _view.ShowNotification("Не вистачає коштів!", Color.red);
+            if (signal.Success) _view.ShowNotification("Successfully!", Color.green);
+            else _view.ShowNotification("Not enough funds!", Color.red);
         }
     }
 }

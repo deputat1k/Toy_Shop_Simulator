@@ -18,6 +18,9 @@ namespace ToyShop.Gameplay.Items
         public event Action OnItemExtracted;
         public event Action OnContainerEmpty;
 
+       
+        public class Factory : PlaceholderFactory<BoxContainer> { }
+
         public bool CanExtract => _itemCount > 0 && _toyData != null && _toyData.Prefab != null;
 
         [Inject]
@@ -26,6 +29,14 @@ namespace ToyShop.Gameplay.Items
             _toyFactory = toyFactory;
         }
 
+
+        public void SetupBox(ToyData toyData)
+        {
+            _toyData = toyData;
+            _itemCount = 4;
+        }
+
+      
         public bool TryExtract(out IItemGrabbable extractedItem)
         {
             if (!CanExtract)
@@ -37,7 +48,7 @@ namespace ToyShop.Gameplay.Items
             _itemCount--;
 
          
-            extractedItem = _toyFactory.Create(_toyData, transform.position, transform.rotation);
+            extractedItem = _toyFactory.Create(_toyData, transform.position + Vector3.up * 0.5f, transform.rotation);
 
             OnItemExtracted?.Invoke();
 

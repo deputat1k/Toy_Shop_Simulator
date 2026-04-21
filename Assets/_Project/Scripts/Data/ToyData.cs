@@ -5,6 +5,7 @@ namespace ToyShop.Data
     [CreateAssetMenu(fileName = "NewToyData", menuName = "ToyShop/Toy Data", order = 1)]
     public class ToyData : ScriptableObject
     {
+        
         [Header("Basic information")]
         public string Id;
         public string DisplayName;
