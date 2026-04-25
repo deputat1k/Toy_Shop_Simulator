@@ -1,7 +1,6 @@
 using System;
 using ToyShop.Core.Interfaces;
 using UnityEngine;
-using static UnityEngine.UI.Image;
 
 namespace ToyShop.Gameplay.Items
 {

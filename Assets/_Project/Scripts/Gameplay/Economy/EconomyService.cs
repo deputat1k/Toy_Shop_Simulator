@@ -1,30 +1,30 @@
+using System;
 using ToyShop.Core.Interfaces;
-using Zenject;
 
 namespace ToyShop.Gameplay.Economy
 {
     public class EconomyService : IEconomyService
     {
-        private readonly SignalBus _signalBus;
-
         public int CurrentBalance { get; private set; } = 100;
 
-        public EconomyService(SignalBus signalBus)
-        {
-            _signalBus = signalBus;
-        }
+        public event Action<int> OnBalanceChanged;
 
         public bool TrySpend(int amount)
         {
             if (amount <= 0) return false;
+            if (CurrentBalance < amount) return false;
 
-            if (CurrentBalance >= amount)
-            {
-                CurrentBalance -= amount;
-                _signalBus.Fire(new BalanceChangedSignal(CurrentBalance));
-                return true;
-            }
-            return false;
+            CurrentBalance -= amount;
+            OnBalanceChanged?.Invoke(CurrentBalance);
+            return true;
+        }
+
+        public void Add(int amount)
+        {
+            if (amount <= 0) return;
+
+            CurrentBalance += amount;
+            OnBalanceChanged?.Invoke(CurrentBalance);
         }
     }
 }

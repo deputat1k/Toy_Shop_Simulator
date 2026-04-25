@@ -1,19 +1,25 @@
 using System;
+using ToyShop.Core.Interfaces;
 using UnityEngine;
 using Zenject;
 
-public class CursorController : IInitializable, IDisposable
+namespace ToyShop.Core.Controllers
 {
-    private readonly SignalBus _signalBus;
-
-    public CursorController(SignalBus signalBus) => _signalBus = signalBus;
-
-    public void Initialize() => _signalBus.Subscribe<TabletStateChangedSignal>(OnTabletStateChanged);
-    public void Dispose() => _signalBus.Unsubscribe<TabletStateChangedSignal>(OnTabletStateChanged);
-
-    private void OnTabletStateChanged(TabletStateChangedSignal signal)
+    public class CursorController : IInitializable, IDisposable
     {
-        Cursor.visible = signal.IsOpen;
-        Cursor.lockState = signal.IsOpen ? CursorLockMode.None : CursorLockMode.Locked;
+        private readonly IGameStateService _gameState;
+
+        public CursorController(IGameStateService gameState) => _gameState = gameState;
+
+        public void Initialize() =>
+            _gameState.OnTabletStateChanged += HandleTabletStateChanged;
+        public void Dispose() =>
+            _gameState.OnTabletStateChanged -= HandleTabletStateChanged;
+
+        private void HandleTabletStateChanged(bool isOpen)
+        {
+            Cursor.visible = isOpen;
+            Cursor.lockState = isOpen ? CursorLockMode.None : CursorLockMode.Locked;
+        }
     }
 }

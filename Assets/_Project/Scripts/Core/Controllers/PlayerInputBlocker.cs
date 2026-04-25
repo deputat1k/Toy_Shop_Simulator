@@ -1,24 +1,29 @@
 using System;
-using Zenject;
 using ToyShop.Core.Interfaces;
+using Zenject;
 
-public class PlayerInputBlocker : IInitializable, IDisposable
+namespace ToyShop.Core.Controllers
 {
-    private readonly SignalBus _signalBus;
-    private readonly IPlayerController _player;
-
-    public PlayerInputBlocker(SignalBus signalBus, IPlayerController player)
+    public class PlayerInputBlocker : IInitializable, IDisposable
     {
-        _signalBus = signalBus;
-        _player = player;
-    }
+        private readonly IGameStateService _gameState;
+        private readonly IPlayerController _player;
 
-    public void Initialize() => _signalBus.Subscribe<TabletStateChangedSignal>(OnTabletStateChanged);
-    public void Dispose() => _signalBus.Unsubscribe<TabletStateChangedSignal>(OnTabletStateChanged);
+        public PlayerInputBlocker(IGameStateService gameState, IPlayerController player)
+        {
+            _gameState = gameState;
+            _player = player;
+        }
 
-    private void OnTabletStateChanged(TabletStateChangedSignal signal)
-    {
-        if (signal.IsOpen) _player.DisableInput();
-        else _player.EnableInput();
+        public void Initialize() =>
+            _gameState.OnTabletStateChanged += HandleTabletStateChanged;
+        public void Dispose() =>
+            _gameState.OnTabletStateChanged -= HandleTabletStateChanged;
+
+        private void HandleTabletStateChanged(bool isOpen)
+        {
+            if (isOpen) _player.DisableInput();
+            else _player.EnableInput();
+        }
     }
 }

@@ -4,7 +4,6 @@
   <Project Path="Zenject-ReflectionBaking-Editor.csproj" />
   <Project Path="Zenject-Editor.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
-  <Project Path="ToyShop.Tests.csproj" />
   <Project Path="Zenject-TestFramework.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
   <Project Path="Zenject-PoolMonitor-Editor.csproj" />

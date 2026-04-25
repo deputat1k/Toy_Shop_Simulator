@@ -1,10 +1,15 @@
+using ToyShop.Core.Controllers;
 using ToyShop.Core.Interfaces;
 using ToyShop.Data;
-using ToyShop.Gameplay;
 using ToyShop.Gameplay.Economy;
+using ToyShop.Gameplay.Environment;
 using ToyShop.Gameplay.Factories;
+using ToyShop.Gameplay.Items;
 using ToyShop.Gameplay.Player;
+using ToyShop.Gameplay.Services;
 using ToyShop.Infrastructure;
+using ToyShop.UI.HUD;
+using ToyShop.UI.Tablet;
 using UnityEngine;
 using Zenject;
 
@@ -12,68 +17,59 @@ namespace ToyShop.Core.Installers
 {
     public class GameplayInstaller : MonoInstaller
     {
-        //  needed to dump the database from Unity
-                [Header("Databases")]
+        [Header("Databases")]
         [SerializeField] private ToyDatabase _mainToyDatabase;
 
         [Header("UI Prefabs")]
-        [SerializeField] private ToyShop.UI.Tablet.ShopItemView _shopItemPrefab;
+        [SerializeField] private ShopItemView _shopItemPrefab;
 
         [Header("Item Prefabs")]
-        [SerializeField] private ToyShop.Gameplay.Items.BoxContainer _boxPrefab;
+        [SerializeField] private BoxContainer _boxPrefab;
 
         public override void InstallBindings()
         {
-            // SYSTEM SERVICES
-            Container.BindInterfacesAndSelfTo<DesktopInput>().AsSingle();
+            // INFRASTRUCTURE
+            Container.BindInterfacesTo<DesktopInput>().AsSingle();
             Container.Bind<IInteractionScanner>().To<PhysicsRaycastScanner>().AsSingle();
             Container.Bind<Camera>().FromComponentInHierarchy().AsSingle();
-            Container.Bind<ToyFactory>().AsSingle();
 
-            //SIGNALS 
-            SignalBusInstaller.Install(Container);
-            Container.DeclareSignal<InputTabletToggleSignal>();
-            Container.DeclareSignal<TabletStateChangedSignal>();
-            Container.DeclareSignal<BalanceChangedSignal>();
-            Container.DeclareSignal<PurchaseResultSignal>();
-
-            // DATABASES
+            // DATA
             Container.BindInstance(_mainToyDatabase).AsSingle();
 
-            //PLAYER
-            Container.Bind<IPlayerController>().To<PlayerController>().FromComponentInHierarchy().AsSingle();
-
-            // GAME STATE CONTROLLERS
-            Container.BindInterfacesTo<GameStateController>().AsSingle();
-            Container.BindInterfacesTo<CursorController>().AsSingle();
-            Container.BindInterfacesTo<PlayerInputBlocker>().AsSingle();
-
-            //BUSINESS LOGIC AND ECONOMY
-            Container.BindInterfacesTo<EconomyService>().AsSingle();
-            Container.BindInterfacesTo<ToyShop.Gameplay.Services.CatalogService>().AsSingle().NonLazy();
-            Container.BindInterfacesTo<ToyShop.Gameplay.Services.PurchaseService>().AsSingle();
-
-            //UI (HUD)
-            Container.Bind<ToyShop.UI.HUD.HUDView>().FromComponentInHierarchy().AsSingle();
-            Container.BindInterfacesTo<ToyShop.UI.HUD.HUDPresenter>().AsSingle().NonLazy();
-
-            //UI (Tablet)
-            Container.Bind<ToyShop.UI.Tablet.TabletView>().FromComponentInHierarchy().AsSingle();
-            Container.BindInterfacesTo<ToyShop.UI.Tablet.TabletPresenter>().AsSingle().NonLazy();
-
-            Container.BindFactory<Transform, ToyShop.UI.Tablet.ShopItemView, ToyShop.UI.Tablet.ShopItemView.Factory>()
+            // FACTORIES
+            Container.Bind<ToyFactory>().AsSingle();
+            Container.BindFactory<BoxContainer, BoxContainer.Factory>()
+                     .FromComponentInNewPrefab(_boxPrefab)
+                     .AsSingle();
+            Container.BindFactory<Transform, ShopItemView, ShopItemView.Factory>()
                      .FromComponentInNewPrefab(_shopItemPrefab)
                      .AsSingle();
 
+            // PLAYER
+            Container.Bind<IPlayerController>().To<PlayerController>()
+                     .FromComponentInHierarchy().AsSingle();
 
-            // DELIVERY SYSTEM
-            Container.BindInterfacesTo<ToyShop.Gameplay.Environment.DeliveryPoint>().FromComponentInHierarchy().AsSingle();
+            // GAME STATE
+            Container.BindInterfacesAndSelfTo<GameStateService>().AsSingle();
+            Container.BindInterfacesTo<CursorController>().AsSingle();
+            Container.BindInterfacesTo<PlayerInputBlocker>().AsSingle();
 
-            Container.BindFactory<ToyShop.Gameplay.Items.BoxContainer, ToyShop.Gameplay.Items.BoxContainer.Factory>()
-                     .FromComponentInNewPrefab(_boxPrefab)
-                     .AsSingle();
+            // SERVICES
+            Container.BindInterfacesAndSelfTo<EconomyService>().AsSingle();
+            Container.BindInterfacesAndSelfTo<CatalogService>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<PurchaseService>().AsSingle();
 
-            Container.BindInterfacesTo<ToyShop.Gameplay.Services.DeliveryService>().AsSingle().NonLazy();
+            // DELIVERY
+            Container.BindInterfacesTo<DeliveryPoint>().FromComponentInHierarchy().AsSingle();
+            Container.BindInterfacesTo<DeliveryService>().AsSingle().NonLazy();
+
+            // UI (Currency)
+            Container.Bind<CurrencyView>().FromComponentInHierarchy().AsSingle();
+            Container.BindInterfacesTo<CurrencyPresenter>().AsSingle().NonLazy();
+
+            // UI (Tablet)
+            Container.Bind<TabletView>().FromComponentInHierarchy().AsSingle();
+            Container.BindInterfacesTo<TabletPresenter>().AsSingle().NonLazy();
         }
     }
 }

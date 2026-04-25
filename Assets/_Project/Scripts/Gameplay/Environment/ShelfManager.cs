@@ -1,7 +1,7 @@
 using System;
-using UnityEngine;
 using System.Linq;
 using ToyShop.Core.Interfaces;
+using UnityEngine;
 
 namespace ToyShop.Gameplay.Environment
 {
@@ -12,29 +12,12 @@ namespace ToyShop.Gameplay.Environment
         public event Action OnShelfFull;
         public event Action OnEmptyContainerProvided;
 
-
-        public ShelfManager(IShelfSlot[] slots = null)
-        {
-            _slots = slots ?? System.Array.Empty<IShelfSlot>();
-        }
         private void Awake()
         {
-            if (_slots == null || _slots.Length == 0)
-            {
-                _slots = GetComponentsInChildren<IShelfSlot>();
-            }
+            _slots = GetComponentsInChildren<IShelfSlot>();
         }
 
-        public void Initialize(IShelfSlot[] slots)
-        {
-            _slots = slots;
-        }
-
-       
-        public bool HasEmptySlot
-        {
-            get { return _slots.Any(slot => !slot.IsOccupied); }
-        }
+        public bool HasEmptySlot => _slots.Any(slot => !slot.IsOccupied);
 
         public void ProcessInteraction(IItemHolder holder)
         {
@@ -54,27 +37,26 @@ namespace ToyShop.Gameplay.Environment
 
         private bool TryHandleContainer(IItemGrabbable heldItem)
         {
-            if (heldItem is IContainerProvider provider && provider.TryGetContainer(out var container))
+            if (!(heldItem is IContainerProvider provider &&
+                  provider.TryGetContainer(out var container)))
+                return false;
+
+            if (!container.CanExtract)
             {
-                if (!container.CanExtract)
-                {
-                    OnEmptyContainerProvided?.Invoke();
-                    return true; 
-                }
-
-                if (!TryGetEmptySlot(out var slot))
-                {
-                    OnShelfFull?.Invoke();
-                    return true;
-                }
-
-                if (container.TryExtract(out var item) && item is IPlaceable placeable)
-                {
-                    slot.Occupy(placeable);
-                }
-                return true; 
+                OnEmptyContainerProvided?.Invoke();
+                return true;
             }
-            return false; 
+
+            if (!TryGetEmptySlot(out var slot))
+            {
+                OnShelfFull?.Invoke();
+                return true;
+            }
+
+            if (container.TryExtract(out var item) && item is IPlaceable placeable)
+                slot.Occupy(placeable);
+
+            return true;
         }
 
         private void TryHandleSingleItem(IItemHolder holder)
@@ -87,7 +69,7 @@ namespace ToyShop.Gameplay.Environment
 
             if (holder.HeldItem is IPlaceable placeable)
             {
-                holder.HeldItem.Drop(); // Freeing our hands
+                holder.HeldItem.Drop();
                 slot.Occupy(placeable);
             }
         }

@@ -1,79 +1,83 @@
 using System;
+using ToyShop.Core;
 using ToyShop.Core.Interfaces;
 using ToyShop.Data;
-using Zenject;
 using UnityEngine;
+using Zenject;
 
 namespace ToyShop.UI.Tablet
 {
     public class TabletPresenter : IInitializable, IDisposable
     {
-        private readonly SignalBus _signalBus;
-        private readonly TabletView _view;
-        private readonly ICatalogService _catalog;
+        private readonly IGameStateService _gameState;
         private readonly IPurchaseService _purchase;
+        private readonly ICatalogService _catalog;
+        private readonly TabletView _view;
         private readonly ShopItemView.Factory _itemFactory;
-        private bool _isInitialized = false;
+        private bool _isInitialized;
 
-        public TabletPresenter(SignalBus signalBus, TabletView view, ICatalogService catalog, IPurchaseService purchase, ShopItemView.Factory itemFactory)
+        public TabletPresenter(
+            IGameStateService gameState,
+            IPurchaseService purchase,
+            ICatalogService catalog,
+            TabletView view,
+            ShopItemView.Factory itemFactory)
         {
-            _signalBus = signalBus;
-            _view = view;
-            _catalog = catalog;
+            _gameState = gameState;
             _purchase = purchase;
+            _catalog = catalog;
+            _view = view;
             _itemFactory = itemFactory;
         }
 
         public void Initialize()
         {
-            _signalBus.Subscribe<TabletStateChangedSignal>(OnTabletStateChanged);
-            _signalBus.Subscribe<PurchaseResultSignal>(OnPurchaseResult);
+            _gameState.OnTabletStateChanged += HandleTabletStateChanged;
+            _purchase.OnPurchaseCompleted += HandlePurchaseCompleted;
         }
 
         public void Dispose()
         {
-            _signalBus.Unsubscribe<TabletStateChangedSignal>(OnTabletStateChanged);
-            _signalBus.Unsubscribe<PurchaseResultSignal>(OnPurchaseResult);
+            _gameState.OnTabletStateChanged -= HandleTabletStateChanged;
+            _purchase.OnPurchaseCompleted -= HandlePurchaseCompleted;
         }
 
-        private void OnTabletStateChanged(TabletStateChangedSignal signal)
+        private void HandleTabletStateChanged(bool isOpen)
         {
-            if (_view == null) return;
-
-            if (signal.IsOpen)
+            if (!isOpen)
             {
-                if (!_isInitialized)
-                {
-                    ClearItemsContainer();
-                    GenerateShopItems();
-                    _isInitialized = true;
-                }
-                _view.Show();
+                _view.Hide();
+                return;
             }
-            else _view.Hide();
+
+            if (!_isInitialized)
+            {
+                ClearItemsContainer();
+                GenerateShopItems();
+                _isInitialized = true;
+            }
+
+            _view.Show();
         }
 
         private void ClearItemsContainer()
         {
             foreach (Transform child in _view.ItemsContainer)
-                GameObject.Destroy(child.gameObject);
+                UnityEngine.Object.Destroy(child.gameObject);
         }
 
         private void GenerateShopItems()
         {
-            var allToys = _catalog.GetAllToys();
-            foreach (ToyData toy in allToys)
+            foreach (ToyData toy in _catalog.GetAllToys())
             {
-                ShopItemView newItem = _itemFactory.Create(_view.ItemsContainer);
-                newItem.Setup(toy, toyId => _purchase.TryBuyToy(toyId));
+                ShopItemView item = _itemFactory.Create(_view.ItemsContainer);
+                item.Setup(toy, toyId => _purchase.TryBuyToy(toyId));
             }
         }
 
-        private void OnPurchaseResult(PurchaseResultSignal signal)
+        private void HandlePurchaseCompleted(PurchaseResult result)
         {
-            if (_view == null) return;
-
-            if (signal.Success) _view.ShowNotification("Successfully!", Color.green);
+            if (result.Success) _view.ShowNotification("Successfully!", Color.green);
             else _view.ShowNotification("Not enough funds!", Color.red);
         }
     }
