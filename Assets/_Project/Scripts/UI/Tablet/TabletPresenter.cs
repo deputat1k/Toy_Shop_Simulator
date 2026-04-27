@@ -1,5 +1,4 @@
 using System;
-using ToyShop.Core;
 using ToyShop.Core.Interfaces;
 using ToyShop.Data;
 using UnityEngine;
@@ -9,7 +8,7 @@ namespace ToyShop.UI.Tablet
 {
     public class TabletPresenter : IInitializable, IDisposable
     {
-        private readonly IGameStateService _gameState;
+        private readonly ITabletStateService _tabletState;
         private readonly IPurchaseService _purchase;
         private readonly ICatalogService _catalog;
         private readonly TabletView _view;
@@ -17,13 +16,13 @@ namespace ToyShop.UI.Tablet
         private bool _isInitialized;
 
         public TabletPresenter(
-            IGameStateService gameState,
+            ITabletStateService tabletState,
             IPurchaseService purchase,
             ICatalogService catalog,
             TabletView view,
             ShopItemView.Factory itemFactory)
         {
-            _gameState = gameState;
+            _tabletState = tabletState;
             _purchase = purchase;
             _catalog = catalog;
             _view = view;
@@ -32,14 +31,16 @@ namespace ToyShop.UI.Tablet
 
         public void Initialize()
         {
-            _gameState.OnTabletStateChanged += HandleTabletStateChanged;
-            _purchase.OnPurchaseCompleted += HandlePurchaseCompleted;
+            _tabletState.OnTabletStateChanged += HandleTabletStateChanged;
+            _purchase.OnPurchaseSucceeded += HandlePurchaseSucceeded;
+            _purchase.OnPurchaseFailed += HandlePurchaseFailed;
         }
 
         public void Dispose()
         {
-            _gameState.OnTabletStateChanged -= HandleTabletStateChanged;
-            _purchase.OnPurchaseCompleted -= HandlePurchaseCompleted;
+            _tabletState.OnTabletStateChanged -= HandleTabletStateChanged;
+            _purchase.OnPurchaseSucceeded -= HandlePurchaseSucceeded;
+            _purchase.OnPurchaseFailed -= HandlePurchaseFailed;
         }
 
         private void HandleTabletStateChanged(bool isOpen)
@@ -75,10 +76,10 @@ namespace ToyShop.UI.Tablet
             }
         }
 
-        private void HandlePurchaseCompleted(PurchaseResult result)
-        {
-            if (result.Success) _view.ShowNotification("Successfully!", Color.green);
-            else _view.ShowNotification("Not enough funds!", Color.red);
-        }
+        private void HandlePurchaseSucceeded(string toyId) =>
+            _view.ShowNotification("Successfully!", Color.green);
+
+        private void HandlePurchaseFailed(string toyId) =>
+            _view.ShowNotification("Not enough funds!", Color.red);
     }
 }

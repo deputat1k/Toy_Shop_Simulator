@@ -1,5 +1,4 @@
 using System;
-using ToyShop.Core;
 using ToyShop.Core.Interfaces;
 using ToyShop.Gameplay.Items;
 using Zenject;
@@ -26,15 +25,14 @@ namespace ToyShop.Gameplay.Services
         }
 
         public void Initialize() =>
-            _purchaseService.OnPurchaseCompleted += HandlePurchaseCompleted;
+            _purchaseService.OnPurchaseSucceeded += HandlePurchaseSucceeded;
+
         public void Dispose() =>
-            _purchaseService.OnPurchaseCompleted -= HandlePurchaseCompleted;
+            _purchaseService.OnPurchaseSucceeded -= HandlePurchaseSucceeded;
 
-        private void HandlePurchaseCompleted(PurchaseResult result)
+        private void HandlePurchaseSucceeded(string toyId)
         {
-            if (!result.Success) return;
-
-            var toy = _catalog.GetToyById(result.ToyId);
+            var toy = _catalog.GetToyById(toyId);
             if (toy == null) return;
 
             BoxContainer box = _boxFactory.Create();

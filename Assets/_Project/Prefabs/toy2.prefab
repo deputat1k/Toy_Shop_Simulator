@@ -31,7 +31,7 @@ Transform:
   m_Children:
   - {fileID: 4196849572402329117}
   m_Father: {fileID: 1607601977995104834}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &523933571019920285
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,8 +487,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6868941670310409484}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -2.374, y: -0, z: 5.555}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -536,6 +536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ToyShop.Gameplay.Items.KinematicGrabPhysics
   _throwMultiplier: 1
   _heldLayerName: HeldItem
+  _placementHeightOffset: 0
 --- !u!65 &4872260386800469034
 BoxCollider:
   m_ObjectHideFlags: 0

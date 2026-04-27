@@ -1,5 +1,4 @@
 using System;
-using ToyShop.Core;
 using ToyShop.Core.Interfaces;
 using ToyShop.Data;
 
@@ -10,7 +9,8 @@ namespace ToyShop.Gameplay.Services
         private readonly IEconomyService _economy;
         private readonly ICatalogService _catalog;
 
-        public event Action<PurchaseResult> OnPurchaseCompleted;
+        public event Action<string> OnPurchaseSucceeded;
+        public event Action<string> OnPurchaseFailed;
 
         public PurchaseService(IEconomyService economy, ICatalogService catalog)
         {
@@ -23,13 +23,18 @@ namespace ToyShop.Gameplay.Services
             ToyData toy = _catalog.GetToyById(toyId);
             if (toy == null)
             {
-                OnPurchaseCompleted?.Invoke(new PurchaseResult(toyId, false));
+                OnPurchaseFailed?.Invoke(toyId);
                 return false;
             }
 
-            bool success = _economy.TrySpend(toy.PurchasePrice);
-            OnPurchaseCompleted?.Invoke(new PurchaseResult(toyId, success));
-            return success;
+            if (!_economy.TrySpend(toy.PurchasePrice))
+            {
+                OnPurchaseFailed?.Invoke(toyId);
+                return false;
+            }
+
+            OnPurchaseSucceeded?.Invoke(toyId);
+            return true;
         }
     }
 }

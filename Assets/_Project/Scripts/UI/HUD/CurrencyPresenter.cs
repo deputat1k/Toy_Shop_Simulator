@@ -7,10 +7,10 @@ namespace ToyShop.UI.HUD
     public class CurrencyPresenter : IInitializable, IDisposable
     {
         private readonly IEconomyService _economy;
-        private readonly IGameStateService _gameState;
+        private readonly ITabletStateService _gameState;
         private readonly CurrencyView _view;
 
-        public CurrencyPresenter(IEconomyService economy, IGameStateService gameState, CurrencyView view)
+        public CurrencyPresenter(IEconomyService economy, ITabletStateService gameState, CurrencyView view)
         {
             _economy = economy;
             _gameState = gameState;

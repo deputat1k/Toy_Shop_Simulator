@@ -50,7 +50,7 @@ namespace ToyShop.Core.Installers
                      .FromComponentInHierarchy().AsSingle();
 
             // GAME STATE
-            Container.BindInterfacesAndSelfTo<GameStateService>().AsSingle();
+            Container.BindInterfacesAndSelfTo<TabletStateService>().AsSingle(); // was GameStateService
             Container.BindInterfacesTo<CursorController>().AsSingle();
             Container.BindInterfacesTo<PlayerInputBlocker>().AsSingle();
 

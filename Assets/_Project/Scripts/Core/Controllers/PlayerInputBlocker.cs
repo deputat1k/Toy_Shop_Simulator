@@ -6,10 +6,10 @@ namespace ToyShop.Core.Controllers
 {
     public class PlayerInputBlocker : IInitializable, IDisposable
     {
-        private readonly IGameStateService _gameState;
+        private readonly ITabletStateService _gameState;
         private readonly IPlayerController _player;
 
-        public PlayerInputBlocker(IGameStateService gameState, IPlayerController player)
+        public PlayerInputBlocker(ITabletStateService gameState, IPlayerController player)
         {
             _gameState = gameState;
             _player = player;

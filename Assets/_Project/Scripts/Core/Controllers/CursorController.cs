@@ -7,9 +7,9 @@ namespace ToyShop.Core.Controllers
 {
     public class CursorController : IInitializable, IDisposable
     {
-        private readonly IGameStateService _gameState;
+        private readonly ITabletStateService _gameState;
 
-        public CursorController(IGameStateService gameState) => _gameState = gameState;
+        public CursorController(ITabletStateService gameState) => _gameState = gameState;
 
         public void Initialize() =>
             _gameState.OnTabletStateChanged += HandleTabletStateChanged;

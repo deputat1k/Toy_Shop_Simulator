@@ -4,7 +4,7 @@ using Zenject;
 
 namespace ToyShop.Core.Controllers
 {
-    public class GameStateService : IGameStateService, IInitializable, IDisposable
+    public class TabletStateService : ITabletStateService, IInitializable, IDisposable
     {
         private readonly IInputProvider _inputProvider;
 
@@ -12,7 +12,7 @@ namespace ToyShop.Core.Controllers
 
         public event Action<bool> OnTabletStateChanged;
 
-        public GameStateService(IInputProvider inputProvider)
+        public TabletStateService(IInputProvider inputProvider)
         {
             _inputProvider = inputProvider;
         }
