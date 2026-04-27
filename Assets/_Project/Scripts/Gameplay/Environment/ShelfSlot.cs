@@ -25,7 +25,11 @@ namespace ToyShop.Gameplay.Environment
         {
             Free();
         }
-
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = new Color(0, 1, 0, 0.5f);
+            Gizmos.DrawCube(transform.position, new Vector3(1, 0.1f, 1));
+        }
         public void Free()
         {
             if (_currentItem != null)

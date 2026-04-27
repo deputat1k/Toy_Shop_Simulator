@@ -1,22 +1,31 @@
-using UnityEngine;
+using System;
 using ToyShop.Core.Interfaces;
+using UnityEngine;
+using Zenject;
 
 namespace ToyShop.Infrastructure
 {
-    public class DesktopInput : IInputProvider
+    public class DesktopInput : IInputProvider, ITickable
     {
+        public event Action OnTabletTogglePressed;
+
         public Vector2 GetMovementDirection()
         {
-            Vector2 direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-            if (direction.sqrMagnitude > 1f) direction.Normalize(); // sqrMagnitude works faster
+            Vector2 direction = new Vector2(
+                Input.GetAxisRaw("Horizontal"),
+                Input.GetAxisRaw("Vertical"));
+
+            if (direction.sqrMagnitude > 1f) direction.Normalize();
             return direction;
         }
 
         public bool IsInteractActionTriggered() => Input.GetKeyDown(KeyCode.E);
-        public bool IsThrowActionTriggered()
+        public bool IsThrowActionTriggered() => Input.GetMouseButtonDown(0);
+
+        public void Tick()
         {
-            // 0 - this is the left mouse button
-            return Input.GetMouseButtonDown(0);
+            if (Input.GetKeyDown(KeyCode.Tab))
+                OnTabletTogglePressed?.Invoke();
         }
     }
 }

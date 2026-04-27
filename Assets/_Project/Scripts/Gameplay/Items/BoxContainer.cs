@@ -11,19 +11,26 @@ namespace ToyShop.Gameplay.Items
     {
         [Header("Container Settings")]
         [SerializeField] private ToyData _toyData;
-        [SerializeField] private int _itemCount = 4;
+        [SerializeField] private int _defaultItemCount = 4;
+        [SerializeField] private float _spawnHeightOffset = 0.5f;
 
+        private int _itemCount;
         private ToyFactory _toyFactory;
 
         public event Action OnItemExtracted;
         public event Action OnContainerEmpty;
 
-        public bool CanExtract => _itemCount > 0 && _toyData != null && _toyData.prefab != null;
+        public class Factory : PlaceholderFactory<BoxContainer> { }
+
+        public bool CanExtract => _itemCount > 0 && _toyData != null && _toyData.Prefab != null;
 
         [Inject]
-        public void Construct(ToyFactory toyFactory)
+        public void Construct(ToyFactory toyFactory) => _toyFactory = toyFactory;
+
+        public void SetupBox(ToyData toyData)
         {
-            _toyFactory = toyFactory;
+            _toyData = toyData;
+            _itemCount = _defaultItemCount;
         }
 
         public bool TryExtract(out IItemGrabbable extractedItem)
@@ -36,15 +43,15 @@ namespace ToyShop.Gameplay.Items
 
             _itemCount--;
 
-         
-            extractedItem = _toyFactory.Create(_toyData, transform.position, transform.rotation);
+            extractedItem = _toyFactory.Create(
+                _toyData,
+                transform.position + Vector3.up * _spawnHeightOffset,
+                transform.rotation);
 
             OnItemExtracted?.Invoke();
 
             if (_itemCount <= 0)
-            {
                 OnContainerEmpty?.Invoke();
-            }
 
             return true;
         }
