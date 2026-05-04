@@ -14,10 +14,10 @@ namespace ToyShop.Gameplay.NPC
             _config = config;
         }
 
-        // Decides whether NPC wants to buy this toy
+        // Decides whether NPC wants to buy based on probability
+        // ToyData is optional — decision works without it
         public bool WantsToBuy(ToyData toy)
         {
-            if (toy == null) return false;
             return Random.value <= _config.BuyProbability;
         }
 

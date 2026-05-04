@@ -13,6 +13,7 @@ namespace ToyShop.Gameplay.Environment
         [Header("Shelves")]
         [SerializeField] private ShelfManager[] _shelfManagers;
 
+        // Cache shelf slot references (not occupancy — that's dynamic)
         private IShelfSlot[] _cachedSlots;
 
         public Vector3 GetEntryPoint() => _entryPoint.position;
@@ -21,9 +22,9 @@ namespace ToyShop.Gameplay.Environment
 
         public IShelfSlot[] GetAllShelfSlots()
         {
+            // Cache slot references once — occupancy is checked dynamically by Brain
             if (_cachedSlots != null) return _cachedSlots;
 
-            // Collect all slots from all shelf managers once and cache
             var allSlots = new System.Collections.Generic.List<IShelfSlot>();
             foreach (ShelfManager shelf in _shelfManagers)
             {
@@ -32,6 +33,11 @@ namespace ToyShop.Gameplay.Environment
             }
 
             _cachedSlots = allSlots.ToArray();
+
+            // Warn if no slots found — likely Inspector not configured
+            if (_cachedSlots.Length == 0)
+                Debug.LogWarning("StorePointsOfInterest: No ShelfSlots found. Check _shelfManagers in Inspector.");
+
             return _cachedSlots;
         }
 
@@ -44,6 +50,8 @@ namespace ToyShop.Gameplay.Environment
                 Debug.LogWarning("StorePointsOfInterest: Exit Point is not assigned.");
             if (_checkoutPoint == null)
                 Debug.LogWarning("StorePointsOfInterest: Checkout Point is not assigned.");
+            if (_shelfManagers == null || _shelfManagers.Length == 0)
+                Debug.LogWarning("StorePointsOfInterest: No ShelfManagers assigned.");
         }
 
         private void OnDrawGizmos()
@@ -58,10 +66,7 @@ namespace ToyShop.Gameplay.Environment
             if (point == null) return;
             Gizmos.color = color;
             Gizmos.DrawSphere(point.position, 0.3f);
-
-            UnityEditor.Handles.Label(
-                point.position + Vector3.up * 0.5f,
-                label);
+            UnityEditor.Handles.Label(point.position + Vector3.up * 0.5f, label);
         }
 #endif
     }

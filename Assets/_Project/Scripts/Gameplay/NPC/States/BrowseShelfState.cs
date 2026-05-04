@@ -25,7 +25,6 @@ namespace ToyShop.Gameplay.NPC.States
 
             if (target == null)
             {
-                // No items available — go to exit
                 npc.ChangeState(_exitState);
                 return;
             }

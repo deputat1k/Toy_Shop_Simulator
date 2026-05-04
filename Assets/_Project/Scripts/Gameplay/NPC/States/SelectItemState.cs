@@ -25,13 +25,11 @@ namespace ToyShop.Gameplay.NPC.States
 
             if (slot == null || !slot.IsOccupied)
             {
-                // Slot became empty before NPC arrived
                 npc.ChangeState(_exitState);
                 return;
             }
 
-            // Slot holds an IPlaceable — we need ToyData from it
-            // for now Brain decides purely on probability
+            // ToyData not yet available from slot — Brain decides on probability only
             bool wants = _context.Brain.WantsToBuy(null);
 
             if (wants)
@@ -47,7 +45,6 @@ namespace ToyShop.Gameplay.NPC.States
         }
 
         public void Update(INpcController npc) { }
-
         public void Exit(INpcController npc) { }
     }
 }
