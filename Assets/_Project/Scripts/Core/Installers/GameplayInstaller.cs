@@ -5,6 +5,8 @@ using ToyShop.Gameplay.Economy;
 using ToyShop.Gameplay.Environment;
 using ToyShop.Gameplay.Factories;
 using ToyShop.Gameplay.Items;
+using ToyShop.Gameplay.NPC;
+using ToyShop.Gameplay.NPC.Spawning;
 using ToyShop.Gameplay.Player;
 using ToyShop.Gameplay.Services;
 using ToyShop.Infrastructure;
@@ -25,6 +27,8 @@ namespace ToyShop.Core.Installers
 
         [Header("Item Prefabs")]
         [SerializeField] private BoxContainer _boxPrefab;
+
+       
 
         public override void InstallBindings()
         {
@@ -50,7 +54,7 @@ namespace ToyShop.Core.Installers
                      .FromComponentInHierarchy().AsSingle();
 
             // GAME STATE
-            Container.BindInterfacesAndSelfTo<TabletStateService>().AsSingle(); // was GameStateService
+            Container.BindInterfacesAndSelfTo<TabletStateService>().AsSingle();
             Container.BindInterfacesTo<CursorController>().AsSingle();
             Container.BindInterfacesTo<PlayerInputBlocker>().AsSingle();
 
@@ -62,6 +66,19 @@ namespace ToyShop.Core.Installers
             // DELIVERY
             Container.BindInterfacesTo<DeliveryPoint>().FromComponentInHierarchy().AsSingle();
             Container.BindInterfacesTo<DeliveryService>().AsSingle().NonLazy();
+
+            // NPC SERVICES
+            Container.BindInterfacesAndSelfTo<CheckoutService>().AsSingle();
+            Container.Bind<IPointOfInterestProvider>()
+                     .To<StorePointsOfInterest>()
+                     .FromComponentInHierarchy()
+                     .AsSingle();
+
+            // NPC POOL & SPAWNER
+            Container.BindInterfacesTo<NpcSpawner>()
+         .FromComponentInHierarchy()
+         .AsSingle()
+         .NonLazy();
 
             // UI (Currency)
             Container.Bind<CurrencyView>().FromComponentInHierarchy().AsSingle();
