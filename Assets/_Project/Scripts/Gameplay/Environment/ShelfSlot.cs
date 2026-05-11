@@ -1,5 +1,5 @@
-using UnityEngine;
 using ToyShop.Core.Interfaces;
+using UnityEngine;
 
 namespace ToyShop.Gameplay.Environment
 {
@@ -8,28 +8,18 @@ namespace ToyShop.Gameplay.Environment
         public bool IsOccupied { get; private set; }
         public Transform SlotTransform => transform;
         public Quaternion PlacementRotation => transform.rotation;
+        public IPlaceable CurrentItem => _currentItem;
 
         private IPlaceable _currentItem;
 
-        // Now we only accept what we can put
         public void Occupy(IPlaceable item)
         {
             IsOccupied = true;
             _currentItem = item;
-
             item.PlaceAt(SlotTransform);
             item.OnRemovedFromPlacement += HandleItemRemoved;
         }
 
-        private void HandleItemRemoved()
-        {
-            Free();
-        }
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = new Color(0, 1, 0, 0.5f);
-            Gizmos.DrawCube(transform.position, new Vector3(1, 0.1f, 1));
-        }
         public void Free()
         {
             if (_currentItem != null)
@@ -40,12 +30,18 @@ namespace ToyShop.Gameplay.Environment
             IsOccupied = false;
         }
 
+        private void HandleItemRemoved() => Free();
+
         private void OnDestroy()
         {
             if (_currentItem != null)
-            {
                 _currentItem.OnRemovedFromPlacement -= HandleItemRemoved;
-            }
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = new Color(0, 1, 0, 0.5f);
+            Gizmos.DrawCube(transform.position, new Vector3(1, 0.1f, 1));
         }
     }
 }

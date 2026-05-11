@@ -1,11 +1,13 @@
 using System;
 using ToyShop.Core.Interfaces;
+using ToyShop.Data;
 using UnityEngine;
 
 namespace ToyShop.Gameplay.Items
 {
     [RequireComponent(typeof(Rigidbody), typeof(Collider))]
-    public class KinematicGrabPhysics : MonoBehaviour, IItemGrabbable, IPlaceable, IContainerProvider
+    public class KinematicGrabPhysics : MonoBehaviour,
+        IItemGrabbable, IPlaceable, IContainerProvider, IToyDataHolder
     {
         [Header("Settings")]
         [SerializeField] private float _throwMultiplier = 1f;
@@ -18,7 +20,6 @@ namespace ToyShop.Gameplay.Items
         private int _originalLayer;
         private int _heldLayer;
 
-        // Implementing events from the interface
         public event Action OnGrabbed;
         public event Action OnDropped;
         public event Action OnThrown;
@@ -27,18 +28,18 @@ namespace ToyShop.Gameplay.Items
         public bool IsHeld { get; private set; }
         public IItemHolder CurrentHolder { get; private set; }
 
+        // IToyDataHolder
+        public ToyData ToyData { get; private set; }
+        public void SetToyData(ToyData data) => ToyData = data;
+
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
             _heldLayer = LayerMask.NameToLayer(_heldLayerName);
-
-            // Keep the original layer
             _originalLayer = gameObject.layer;
 
             if (_heldLayer == -1)
-            {
                 Debug.LogError($"Layer '{_heldLayerName}' not found! Create it in Unity settings.");
-            }
         }
 
         public void PlaceAt(Transform targetTransform)
@@ -54,10 +55,7 @@ namespace ToyShop.Gameplay.Items
 
             IsHeld = true;
             CurrentHolder = holder;
-
-
             holder.HeldItem = this;
-
 
             if (_heldLayer != -1) gameObject.layer = _heldLayer;
 
@@ -75,18 +73,12 @@ namespace ToyShop.Gameplay.Items
         {
             if (!IsHeld) return;
 
-
             gameObject.layer = _originalLayer;
-
-
             transform.SetParent(null);
             _rigidbody.isKinematic = false;
 
-
             if (CurrentHolder != null)
-            {
                 CurrentHolder.HeldItem = null;
-            }
 
             CurrentHolder = null;
             IsHeld = false;
@@ -99,17 +91,13 @@ namespace ToyShop.Gameplay.Items
             if (!IsHeld || CurrentHolder == null) return;
 
             Vector3 throwVelocity = CurrentHolder.Velocity;
-
             Drop();
-
-            Vector3 finalForce = (appliedForce * _throwMultiplier) + throwVelocity;
-
-            _rigidbody.AddForce(finalForce, ForceMode.Impulse);
+            _rigidbody.AddForce(
+                (appliedForce * _throwMultiplier) + throwVelocity,
+                ForceMode.Impulse);
 
             OnThrown?.Invoke();
         }
-
-       
 
         public bool TryGetContainer(out IItemContainer container)
         {

@@ -2,29 +2,43 @@ using UnityEngine;
 
 namespace ToyShop.Gameplay.NPC
 {
-    // Stub for future animation integration
-    // Add Animator component and animator controller when animations are ready
     public class NpcAnimator : MonoBehaviour
     {
-        // private Animator _animator;
-        // private static readonly int SpeedHash = Animator.StringToHash("Speed");
-        // private static readonly int IsWalkingHash = Animator.StringToHash("IsWalking");
+        // Searches in children — works whether Animator is on root or child mesh
+        private Animator _animator;
 
-        // private void Awake() => _animator = GetComponent<Animator>();
+        private static readonly int SpeedHash =
+            Animator.StringToHash("Speed");
+        private static readonly int IsInteractingHash =
+            Animator.StringToHash("IsInteracting");
 
-        public void SetMoving(bool isMoving)
+        private void Awake()
         {
-            // _animator.SetBool(IsWalkingHash, isMoving);
+            // GetComponentInChildren finds Animator on root OR any child
+            _animator = GetComponentInChildren<Animator>();
+
+            if (_animator == null)
+                Debug.LogError("NpcAnimator: Animator component not found on NPC or its children.");
         }
 
         public void SetSpeed(float speed)
         {
-            // _animator.SetFloat(SpeedHash, speed);
+            if (_animator == null) return;
+            _animator.SetFloat(SpeedHash, speed);
         }
 
-        public void PlayPickupAnimation()
+        public void SetMoving(bool isMoving) { }
+
+        public void PlayInteractAnimation()
         {
-            // _animator.SetTrigger("Pickup");
+            if (_animator == null) return;
+            _animator.SetBool(IsInteractingHash, true);
+        }
+
+        public void StopInteractAnimation()
+        {
+            if (_animator == null) return;
+            _animator.SetBool(IsInteractingHash, false);
         }
     }
 }

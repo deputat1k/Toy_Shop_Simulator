@@ -11,26 +11,31 @@ namespace ToyShop.Gameplay.NPC
     {
         [Header("Navigation")]
         [SerializeField] private float _stoppingDistance = 0.5f;
-        [SerializeField] private float _reachThreshold = 0.2f;
+        [SerializeField] private float _reachThreshold = 0.3f;
+        [SerializeField] private float _rotationSpeed = 360f;
+        [SerializeField] private float _moveSpeed = 2f;
 
         private NavMeshAgent _agent;
         private NpcAnimator _npcAnimator;
+        private NpcItemVisual _npcItemVisual;
         private NpcStateMachine _stateMachine;
-        private NpcContext _context;
 
-        // INpcController — data
         public ToyData SelectedToy { get; set; }
         public bool HasItem { get; set; }
         public IShelfSlot TargetSlot { get; set; }
         public Transform Transform => transform;
+        public NpcAnimator NpcAnimator => _npcAnimator;
 
-        // Pool lifecycle
         public event Action OnReadyToReturn;
+
+        public void PlayInteractAnimation() => _npcAnimator?.PlayInteractAnimation();
+        public void StopInteractAnimation() => _npcAnimator?.StopInteractAnimation();
 
         private void Awake()
         {
             _agent = GetComponent<NavMeshAgent>();
             _npcAnimator = GetComponent<NpcAnimator>();
+            _npcItemVisual = GetComponent<NpcItemVisual>();
             _agent.stoppingDistance = _stoppingDistance;
             _stateMachine = new NpcStateMachine();
         }
@@ -41,30 +46,30 @@ namespace ToyShop.Gameplay.NPC
             UpdateAnimator();
         }
 
-        // Called by NpcSpawner after taking from pool
         public void Initialize(NpcContext context, INpcState initialState)
         {
-            _context = context;
             HasItem = false;
             SelectedToy = null;
             TargetSlot = null;
+            SetAgentRotationEnabled(true);
             _stateMachine.ChangeState(initialState, this);
         }
 
-        // Called by NpcSpawner when returning to pool
         public void ResetNpc()
         {
             _agent.ResetPath();
             HasItem = false;
             SelectedToy = null;
             TargetSlot = null;
+            SetAgentRotationEnabled(true);
+            HideItemVisual();
         }
 
         public void MoveTo(Vector3 destination)
         {
             if (!_agent.isOnNavMesh)
             {
-                Debug.LogWarning($"NpcController: agent is not on NavMesh. Object: {gameObject.name}");
+                Debug.LogWarning($"NpcController: agent not on NavMesh. Object: {gameObject.name}");
                 return;
             }
 
@@ -85,19 +90,46 @@ namespace ToyShop.Gameplay.NPC
             _stateMachine.ChangeState(newState, this);
         }
 
-        // Fired by ExitStoreState when NPC reaches exit
-        public void NotifyReadyToReturn()
+        public void FaceDirection(Vector3 targetPosition)
         {
-            OnReadyToReturn?.Invoke();
+            Vector3 direction = (targetPosition - transform.position).normalized;
+            direction.y = 0f;
+
+            if (direction == Vector3.zero) return;
+
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.RotateTowards(
+                transform.rotation,
+                targetRotation,
+                _rotationSpeed * Time.deltaTime);
         }
+
+        public bool IsFacingTarget(Vector3 targetPosition, float angleThreshold = 10f)
+        {
+            Vector3 direction = (targetPosition - transform.position).normalized;
+            direction.y = 0f;
+
+            if (direction == Vector3.zero) return true;
+
+            return Vector3.Angle(transform.forward, direction) <= angleThreshold;
+        }
+
+        public void SetAgentRotationEnabled(bool enabled)
+        {
+            _agent.updateRotation = enabled;
+        }
+
+        public void ShowItemVisual() => _npcItemVisual?.Show();
+        public void HideItemVisual() => _npcItemVisual?.Hide();
+
+        public void NotifyReadyToReturn() => OnReadyToReturn?.Invoke();
 
         private void UpdateAnimator()
         {
             if (_npcAnimator == null) return;
 
             float speed = _agent.velocity.magnitude;
-            _npcAnimator.SetSpeed(speed);
-            _npcAnimator.SetMoving(speed > 0.1f);
+            _npcAnimator.SetSpeed(speed > 0.3f ? speed : 0f);
         }
 
 #if UNITY_EDITOR
@@ -105,6 +137,7 @@ namespace ToyShop.Gameplay.NPC
         {
             if (_stoppingDistance < 0f) _stoppingDistance = 0f;
             if (_reachThreshold < 0f) _reachThreshold = 0f;
+            if (_rotationSpeed < 0f) _rotationSpeed = 0f;
         }
 #endif
     }

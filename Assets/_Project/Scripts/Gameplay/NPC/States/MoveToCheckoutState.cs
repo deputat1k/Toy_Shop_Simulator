@@ -16,7 +16,9 @@ namespace ToyShop.Gameplay.NPC.States
         public void Enter(INpcController npc)
         {
             _context.CheckoutService.EnqueueNpc(npc);
-            npc.MoveTo(_context.PointsOfInterest.GetCheckoutPoint());
+
+            // Move to assigned queue position based on current index
+            npc.MoveTo(_context.CheckoutService.GetNpcQueuePosition(npc));
         }
 
         public void Update(INpcController npc)

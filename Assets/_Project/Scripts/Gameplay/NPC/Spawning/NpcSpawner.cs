@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using ToyShop.Core.Interfaces;
 using ToyShop.Gameplay.NPC.States;
 using UnityEngine;
@@ -9,27 +10,41 @@ namespace ToyShop.Gameplay.NPC.Spawning
 {
     public class NpcSpawner : MonoBehaviour, INpcSpawner
     {
-        [Header("Prefab")]
-        [SerializeField] private NpcController _npcPrefab;
+        [Header("Prefabs")]
+        [Tooltip("Spawner randomly picks one prefab per NPC")]
+        [SerializeField] private NpcController[] _npcPrefabs;
 
         [Header("Spawn Settings")]
         [SerializeField] private float _spawnInterval = 5f;
         [SerializeField] private int _maxNpcsInScene = 5;
 
         [Header("Pool Settings")]
-        [SerializeField] private int _poolDefaultCapacity = 5;
+        [SerializeField] private int _poolDefaultCapacity = 3;
         [SerializeField] private int _poolMaxSize = 10;
 
-        [Header("Brain Config")]
+        [Header("Behavior")]
         [SerializeField] private NpcBrainConfig _brainConfig;
+        [SerializeField] private float _shelfIdleDuration = 2f;
+        [SerializeField] private float _postPickupDelay = 1f;
 
         private ICheckoutService _checkoutService;
         private IPointOfInterestProvider _pointsOfInterest;
 
-        private NpcPool _pool;
+        // One pool per prefab type
+        private Dictionary<NpcController, NpcPool> _pools;
         private Coroutine _spawnRoutine;
 
-        public int ActiveNpcCount => _pool?.CountActive ?? 0;
+        public int ActiveNpcCount
+        {
+            get
+            {
+                int count = 0;
+                if (_pools == null) return 0;
+                foreach (var pool in _pools.Values)
+                    count += pool.CountActive;
+                return count;
+            }
+        }
 
         [Inject]
         public void Construct(
@@ -42,11 +57,21 @@ namespace ToyShop.Gameplay.NPC.Spawning
 
         private void Start()
         {
-            _pool = new NpcPool(
-                _npcPrefab,
-                transform,
-                _poolDefaultCapacity,
-                _poolMaxSize);
+            if (_npcPrefabs == null || _npcPrefabs.Length == 0)
+            {
+                Debug.LogError("NpcSpawner: No NPC prefabs assigned.");
+                return;
+            }
+
+            _pools = new Dictionary<NpcController, NpcPool>();
+            foreach (NpcController prefab in _npcPrefabs)
+            {
+                if (prefab == null) continue;
+                _pools[prefab] = new NpcPool(
+                    prefab, transform,
+                    _poolDefaultCapacity,
+                    _poolMaxSize);
+            }
 
             StartSpawning();
         }
@@ -70,30 +95,43 @@ namespace ToyShop.Gameplay.NPC.Spawning
             {
                 yield return new WaitForSeconds(_spawnInterval);
 
-                if (_pool.CountActive < _maxNpcsInScene)
+                if (ActiveNpcCount < _maxNpcsInScene)
                     SpawnNpc();
             }
         }
 
         private void SpawnNpc()
         {
-            NpcController npc = _pool.Get();
+            NpcController prefab = GetRandomPrefab();
+            if (prefab == null) return;
+
+            NpcPool pool = _pools[prefab];
+            NpcController npc = pool.Get();
 
             npc.transform.position = _pointsOfInterest.GetEntryPoint();
 
             NpcContext context = BuildContext();
             INpcState initialState = BuildStates(context);
 
-            // Keep reference to correctly unsubscribe lambda
             Action returnAction = null;
             returnAction = () =>
             {
                 npc.OnReadyToReturn -= returnAction;
-                _pool.Release(npc);
+                pool.Release(npc);
             };
 
             npc.OnReadyToReturn += returnAction;
             npc.Initialize(context, initialState);
+        }
+
+        private NpcController GetRandomPrefab()
+        {
+            if (_pools == null || _pools.Count == 0) return null;
+
+            NpcController[] prefabs = new NpcController[_pools.Count];
+            _pools.Keys.CopyTo(prefabs, 0);
+
+            return prefabs[UnityEngine.Random.Range(0, prefabs.Length)];
         }
 
         private NpcContext BuildContext()
@@ -106,12 +144,12 @@ namespace ToyShop.Gameplay.NPC.Spawning
 
         private INpcState BuildStates(NpcContext context)
         {
-            // Build bottom-up — each state needs reference to next
             var exitState = new ExitStoreState(context);
             var waitInQueue = new WaitInQueueState(context, exitState);
             var moveToCheckout = new MoveToCheckoutState(context, waitInQueue);
-            var selectItem = new SelectItemState(context, moveToCheckout, exitState);
-            var browseShelf = new BrowseShelfState(context, selectItem, exitState);
+            var selectItem = new SelectItemState(context, moveToCheckout, exitState, _postPickupDelay);
+            var idleAtShelf = new IdleAtShelfState(context, selectItem, _shelfIdleDuration);
+            var browseShelf = new BrowseShelfState(context, idleAtShelf, exitState);
             var enterStore = new EnterStoreState(context, browseShelf);
 
             return enterStore;
@@ -126,6 +164,8 @@ namespace ToyShop.Gameplay.NPC.Spawning
             if (_maxNpcsInScene < 1) _maxNpcsInScene = 1;
             if (_poolDefaultCapacity < 1) _poolDefaultCapacity = 1;
             if (_poolMaxSize < _poolDefaultCapacity) _poolMaxSize = _poolDefaultCapacity;
+            if (_shelfIdleDuration < 0.5f) _shelfIdleDuration = 0.5f;
+            if (_postPickupDelay < 0f) _postPickupDelay = 0f;
         }
 #endif
     }

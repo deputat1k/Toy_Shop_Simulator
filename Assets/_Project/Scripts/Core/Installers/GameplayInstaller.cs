@@ -69,6 +69,12 @@ namespace ToyShop.Core.Installers
 
             // NPC SERVICES
             Container.BindInterfacesAndSelfTo<CheckoutService>().AsSingle();
+            Container.Bind<ICheckoutQueue>()
+                     .To<CheckoutCounter>()
+                     .FromComponentInHierarchy()
+                     .AsSingle();
+
+
             Container.Bind<IPointOfInterestProvider>()
                      .To<StorePointsOfInterest>()
                      .FromComponentInHierarchy()

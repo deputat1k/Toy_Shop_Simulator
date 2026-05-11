@@ -8,15 +8,19 @@ namespace ToyShop.Gameplay.Services
     public class CheckoutService : ICheckoutService
     {
         private readonly IEconomyService _economy;
+        private readonly ICheckoutQueue _checkoutQueue;
         private readonly Queue<INpcController> _queue = new Queue<INpcController>();
 
         public int QueueLength => _queue.Count;
 
         public event Action<INpcController> OnCheckoutCompleted;
+        public event Action OnQueueChanged;
 
-        public CheckoutService(IEconomyService economy)
+        public Vector3 GetCounterFacingPosition() => _checkoutQueue.GetPositionAt(0);
+        public CheckoutService(IEconomyService economy, ICheckoutQueue checkoutQueue)
         {
             _economy = economy;
+            _checkoutQueue = checkoutQueue;
         }
 
         public void EnqueueNpc(INpcController npc)
@@ -34,15 +38,14 @@ namespace ToyShop.Gameplay.Services
             }
 
             _queue.Enqueue(npc);
+            OnQueueChanged?.Invoke();
         }
 
         public void DequeueNpc(INpcController npc)
         {
             if (!_queue.Contains(npc)) return;
 
-            // Queue doesn't support arbitrary removal — rebuild without target
             Queue<INpcController> rebuilt = new Queue<INpcController>();
-
             foreach (INpcController queued in _queue)
             {
                 if (queued != npc)
@@ -50,15 +53,34 @@ namespace ToyShop.Gameplay.Services
             }
 
             _queue.Clear();
-
             foreach (INpcController queued in rebuilt)
                 _queue.Enqueue(queued);
+
+            OnQueueChanged?.Invoke();
         }
 
         public bool IsFirstInQueue(INpcController npc)
         {
             if (_queue.Count == 0) return false;
             return _queue.Peek() == npc;
+        }
+
+        public INpcController GetFirstInQueue()
+        {
+            if (_queue.Count == 0) return null;
+            return _queue.Peek();
+        }
+
+        public Vector3 GetNpcQueuePosition(INpcController npc)
+        {
+            int index = 0;
+            foreach (INpcController queued in _queue)
+            {
+                if (queued == npc)
+                    return _checkoutQueue.GetPositionAt(index);
+                index++;
+            }
+            return _checkoutQueue.GetPositionAt(0);
         }
 
         public void ProcessCheckout(INpcController npc)
@@ -71,18 +93,20 @@ namespace ToyShop.Gameplay.Services
 
             if (npc.HasItem)
             {
-                // NPC pays — money goes to player economy
-                // SellPrice used here: NPC sells toy to store (player receives money)
-                // ToyData not available at this stage — fixed price as fallback
-                _economy.Add(NpcPaymentAmount);
+                // Use SellPrice from ToyData if available, otherwise fallback
+                int payment = npc.SelectedToy != null
+                    ? npc.SelectedToy.SellPrice
+                    : FallbackPaymentAmount;
+
+                _economy.Add(payment);
             }
 
             _queue.Dequeue();
             OnCheckoutCompleted?.Invoke(npc);
+            OnQueueChanged?.Invoke();
         }
 
-        // Fixed payment per NPC transaction
-        // Will be replaced with ToyData.SellPrice when item data flows through states
-        private const int NpcPaymentAmount = 10;
+        // Fallback if ToyData is not available on NPC
+        private const int FallbackPaymentAmount = 10;
     }
 }

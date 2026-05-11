@@ -16,6 +16,7 @@ namespace ToyShop.Gameplay.NPC.States
         {
             _returned = false;
             npc.HasItem = false;
+            npc.HideItemVisual();
             npc.SelectedToy = null;
             npc.TargetSlot = null;
             npc.MoveTo(_context.PointsOfInterest.GetExitPoint());
