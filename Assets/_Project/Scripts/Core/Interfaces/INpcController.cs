@@ -6,24 +6,26 @@ namespace ToyShop.Core.Interfaces
 {
     public interface INpcController
     {
-        // Navigation
         void MoveTo(Vector3 destination);
         bool HasReachedDestination();
-
-        // State
         void ChangeState(INpcState newState);
 
-        // Item interaction
         ToyData SelectedToy { get; set; }
         bool HasItem { get; set; }
-
-        // Shelf interaction
         IShelfSlot TargetSlot { get; set; }
-
-        // World references
         Transform Transform { get; }
 
-        // Pool lifecycle
+        void FaceDirection(Vector3 targetPosition);
+        bool IsFacingTarget(Vector3 targetPosition, float angleThreshold = 10f);
+        void SetAgentRotationEnabled(bool enabled);
+
+        // Animation control — implemented by NpcController, called by states
+        void PlayInteractAnimation();
+        void StopInteractAnimation();
+
+        void ShowItemVisual();
+        void HideItemVisual();
+
         event Action OnReadyToReturn;
         void NotifyReadyToReturn();
     }

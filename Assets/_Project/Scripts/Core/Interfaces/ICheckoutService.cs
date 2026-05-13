@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace ToyShop.Core.Interfaces
 {
@@ -10,8 +11,15 @@ namespace ToyShop.Core.Interfaces
         void DequeueNpc(INpcController npc);
 
         bool IsFirstInQueue(INpcController npc);
+        INpcController GetFirstInQueue();
         void ProcessCheckout(INpcController npc);
 
+        Vector3 GetNpcQueuePosition(INpcController npc);
+
+        // Position NPCs should face while waiting in queue
+        Vector3 GetCounterFacingPosition();
+
         event Action<INpcController> OnCheckoutCompleted;
+        event Action OnQueueChanged;
     }
 }

@@ -7,6 +7,7 @@ namespace ToyShop.Core.Interfaces
         bool IsOccupied { get; }
         Transform SlotTransform { get; }
         Quaternion PlacementRotation { get; }
+        IPlaceable CurrentItem { get; }
 
         void Occupy(IPlaceable item);
         void Free();
