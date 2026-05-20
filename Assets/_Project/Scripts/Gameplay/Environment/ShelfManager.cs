@@ -2,12 +2,17 @@ using System;
 using System.Linq;
 using ToyShop.Core.Interfaces;
 using UnityEngine;
+using Zenject;
 
 namespace ToyShop.Gameplay.Environment
 {
     public class ShelfManager : MonoBehaviour, IShelfManager
     {
         private IShelfSlot[] _slots;
+
+        // Field injection with Optional — valid Zenject syntax unlike [Inject(Optional=true)] on methods
+        [Inject(Optional = true)]
+        private IHudNotificationService _notification;
 
         public event Action OnShelfFull;
         public event Action OnEmptyContainerProvided;
@@ -43,6 +48,7 @@ namespace ToyShop.Gameplay.Environment
 
             if (!container.CanExtract)
             {
+                _notification?.ShowMessage("Box is empty!", Color.red);
                 OnEmptyContainerProvided?.Invoke();
                 return true;
             }

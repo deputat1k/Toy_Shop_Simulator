@@ -24,13 +24,21 @@ namespace ToyShop.Gameplay.Items
 
         public bool CanExtract => _itemCount > 0 && _toyData != null && _toyData.Prefab != null;
 
+        // Read access for save system
+        public ToyData ToyData => _toyData;
+        public int ItemCount => _itemCount;
+
         [Inject]
         public void Construct(ToyFactory toyFactory) => _toyFactory = toyFactory;
 
-        public void SetupBox(ToyData toyData)
+        // Standard setup — uses default item count
+        public void SetupBox(ToyData toyData) => SetupBox(toyData, _defaultItemCount);
+
+        // Restore-aware setup — used by save/load system to set specific item count
+        public void SetupBox(ToyData toyData, int itemCount)
         {
             _toyData = toyData;
-            _itemCount = _defaultItemCount;
+            _itemCount = itemCount;
         }
 
         public bool TryExtract(out IItemGrabbable extractedItem)

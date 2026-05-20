@@ -26,5 +26,14 @@ namespace ToyShop.Gameplay.Economy
             CurrentBalance += amount;
             OnBalanceChanged?.Invoke(CurrentBalance);
         }
+
+        // Restores balance directly — used only by save/load system
+        public void SetBalance(int amount)
+        {
+            if (amount < 0) return;
+
+            CurrentBalance = amount;
+            OnBalanceChanged?.Invoke(CurrentBalance);
+        }
     }
 }

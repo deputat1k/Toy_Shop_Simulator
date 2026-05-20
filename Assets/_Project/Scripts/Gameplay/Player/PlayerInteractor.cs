@@ -2,9 +2,8 @@ using UnityEngine;
 using Zenject;
 using ToyShop.Core.Interfaces;
 
-namespace ToyShop.Gameplay
+namespace ToyShop.Gameplay.Player 
 {
-    // RequireComponent ensures that the player definitely has a CharacterController
     [RequireComponent(typeof(CharacterController))]
     public class PlayerInteractor : MonoBehaviour, IInteractor, IItemHolder
     {
@@ -19,9 +18,8 @@ namespace ToyShop.Gameplay
         private IInteractionScanner _scanner;
         private CharacterController _characterController;
 
-     
         public IItemGrabbable HeldItem { get; set; }
-        public Vector3 Velocity => _characterController.velocity; 
+        public Vector3 Velocity => _characterController.velocity;
 
         [Inject]
         public void Construct(IInputProvider inputProvider, IInteractionScanner scanner)
@@ -37,44 +35,29 @@ namespace ToyShop.Gameplay
 
         private void Update()
         {
-           
             if (_inputProvider.IsThrowActionTriggered() && HeldItem != null)
             {
                 HandleThrow();
-                return; 
+                return;
             }
 
             if (_inputProvider.IsInteractActionTriggered())
-            {
                 HandleInteraction();
-            }
         }
 
         private void HandleInteraction()
         {
-           
             var interactable = _scanner.Scan(_camera.transform, _interactRange, _interactLayer);
 
-           
             if (interactable != null)
-            {
-                
                 interactable.Interact(this);
-            }
-            
             else if (HeldItem != null)
-            {
-                
                 HeldItem.Drop();
-            }
         }
 
         private void HandleThrow()
         {
-            //  We calculate only the direction vector from the camera *the base force
-                        Vector3 throwDirection = _camera.transform.forward * _baseThrowForce;
-
-          
+            Vector3 throwDirection = _camera.transform.forward * _baseThrowForce;
             HeldItem.Throw(throwDirection);
         }
 
