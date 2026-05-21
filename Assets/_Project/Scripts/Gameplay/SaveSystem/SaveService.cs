@@ -12,8 +12,10 @@ namespace ToyShop.Gameplay.SaveSystem
         private readonly List<ISaveHandler> _handlers;
 
         private const string SaveFileName = "save.json";
-        private string SavePath => Path.Combine(Application.persistentDataPath, SaveFileName);
         private const int CurrentSaveVersion = 1;
+
+        private string SavePath => Path.Combine(Application.persistentDataPath, SaveFileName);
+
         public bool HasSave => File.Exists(SavePath);
 
         public SaveService(List<ISaveHandler> handlers)
@@ -49,9 +51,17 @@ namespace ToyShop.Gameplay.SaveSystem
                 return;
             }
 
-            
+            try
+            {
                 string json = File.ReadAllText(SavePath);
                 GameSaveData data = JsonUtility.FromJson<GameSaveData>(json);
+
+                // JsonUtility returns null for empty or structurally invalid JSON
+                if (data == null)
+                {
+                    Debug.LogError("[SaveService] Save file is corrupted or empty. Load aborted.");
+                    return;
+                }
 
                 if (data.SaveVersion != CurrentSaveVersion)
                 {
@@ -62,7 +72,13 @@ namespace ToyShop.Gameplay.SaveSystem
 
                 foreach (ISaveHandler handler in _handlers)
                     handler.OnLoad(data);
-            
+
+                Debug.Log($"[SaveService] Loaded from: {SavePath}");
             }
+            catch (Exception e)
+            {
+                Debug.LogError($"[SaveService] Load failed: {e.Message}");
+            }
+        }
     }
 }
