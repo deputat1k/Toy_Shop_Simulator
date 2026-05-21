@@ -6,8 +6,11 @@ namespace ToyShop.Core.Interfaces
     {
         int CurrentBalance { get; }
         bool TrySpend(int amount);
-
         void Add(int amount);
+
+        // Required for save/load — directly restores balance without side effects
+        void SetBalance(int amount);
+
         event Action<int> OnBalanceChanged;
     }
 }

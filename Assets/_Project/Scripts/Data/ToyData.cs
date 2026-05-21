@@ -19,5 +19,14 @@ namespace ToyShop.Data
         [Header("Visual")]
         public GameObject Prefab;
         public Sprite Icon;
+
+
+#if UNITY_EDITOR
+        private void OnValidate()
+        {
+            if (string.IsNullOrEmpty(Id))
+                Debug.LogWarning($"ToyData '{name}': Id is empty!", this);
+        }
+#endif
     }
 }

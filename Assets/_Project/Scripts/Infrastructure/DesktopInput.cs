@@ -8,6 +8,7 @@ namespace ToyShop.Infrastructure
     public class DesktopInput : IInputProvider, ITickable
     {
         public event Action OnTabletTogglePressed;
+        public event Action OnPausePressed;
 
         public Vector2 GetMovementDirection()
         {
@@ -19,6 +20,9 @@ namespace ToyShop.Infrastructure
             return direction;
         }
 
+        public Vector2 GetLookDelta() =>
+            new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+
         public bool IsInteractActionTriggered() => Input.GetKeyDown(KeyCode.E);
         public bool IsThrowActionTriggered() => Input.GetMouseButtonDown(0);
 
@@ -26,6 +30,9 @@ namespace ToyShop.Infrastructure
         {
             if (Input.GetKeyDown(KeyCode.Tab))
                 OnTabletTogglePressed?.Invoke();
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+                OnPausePressed?.Invoke();
         }
     }
 }

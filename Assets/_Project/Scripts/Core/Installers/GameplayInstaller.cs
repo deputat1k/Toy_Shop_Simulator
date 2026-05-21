@@ -7,10 +7,13 @@ using ToyShop.Gameplay.Factories;
 using ToyShop.Gameplay.Items;
 using ToyShop.Gameplay.NPC;
 using ToyShop.Gameplay.NPC.Spawning;
+using ToyShop.Gameplay.Pause;
 using ToyShop.Gameplay.Player;
+using ToyShop.Gameplay.SaveSystem;
 using ToyShop.Gameplay.Services;
 using ToyShop.Infrastructure;
 using ToyShop.UI.HUD;
+using ToyShop.UI.PauseMenu;
 using ToyShop.UI.Tablet;
 using UnityEngine;
 using Zenject;
@@ -27,8 +30,6 @@ namespace ToyShop.Core.Installers
 
         [Header("Item Prefabs")]
         [SerializeField] private BoxContainer _boxPrefab;
-
-       
 
         public override void InstallBindings()
         {
@@ -55,6 +56,11 @@ namespace ToyShop.Core.Installers
 
             // GAME STATE
             Container.BindInterfacesAndSelfTo<TabletStateService>().AsSingle();
+
+            // PAUSE
+            Container.BindInterfacesTo<PauseService>().AsSingle();
+
+            // CURSOR & INPUT BLOCKING
             Container.BindInterfacesTo<CursorController>().AsSingle();
             Container.BindInterfacesTo<PlayerInputBlocker>().AsSingle();
 
@@ -73,8 +79,6 @@ namespace ToyShop.Core.Installers
                      .To<CheckoutCounter>()
                      .FromComponentInHierarchy()
                      .AsSingle();
-
-
             Container.Bind<IPointOfInterestProvider>()
                      .To<StorePointsOfInterest>()
                      .FromComponentInHierarchy()
@@ -82,9 +86,20 @@ namespace ToyShop.Core.Installers
 
             // NPC POOL & SPAWNER
             Container.BindInterfacesTo<NpcSpawner>()
-         .FromComponentInHierarchy()
-         .AsSingle()
-         .NonLazy();
+                     .FromComponentInHierarchy()
+                     .AsSingle()
+                     .NonLazy();
+
+            // SAVE
+            Container.Bind<ISaveHandler>().To<EconomySaveHandler>().AsSingle();
+            Container.Bind<ISaveHandler>().To<ShelfSaveHandler>().AsSingle();
+            Container.Bind<ISaveHandler>().To<PlayerSaveHandler>().AsSingle();
+            Container.Bind<ISaveHandler>().To<BoxSaveHandler>().AsSingle();
+            Container.Bind<ISaveService>().To<SaveService>().AsSingle();
+
+            // UI (HUD Notification)
+            Container.Bind<HudNotificationView>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<IHudNotificationService>().To<HudNotificationService>().AsSingle();
 
             // UI (Currency)
             Container.Bind<CurrencyView>().FromComponentInHierarchy().AsSingle();
@@ -93,6 +108,14 @@ namespace ToyShop.Core.Installers
             // UI (Tablet)
             Container.Bind<TabletView>().FromComponentInHierarchy().AsSingle();
             Container.BindInterfacesTo<TabletPresenter>().AsSingle().NonLazy();
+
+            // UI (Pause Menu)
+            Container.Bind<PauseMenuView>().FromComponentInHierarchy().AsSingle();
+            Container.BindInterfacesTo<PauseMenuPresenter>().AsSingle().NonLazy();
+
+          
         }
+
+       
     }
 }
