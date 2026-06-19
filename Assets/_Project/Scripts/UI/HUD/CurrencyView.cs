@@ -43,9 +43,12 @@ namespace ToyShop.UI.HUD
         public void UpdateBalance(int amount, int delta)
         {
             if (_balanceText != null)
-                _balanceText.text = $"{amount:N0}";
+                _balanceText.text = $"${amount:N0}";
 
             if (delta == 0) return;
+
+            // Guard: HUD balance panel is hidden while tablet is open — skip animations
+            if (!gameObject.activeInHierarchy) return;
 
             bool isEarning = delta > 0;
             Color feedbackColor = isEarning ? _earnColor : _spendColor;
