@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9875f43bcce268c47ae7bc9cf0eaeb5c, type: 3}
-  m_Name: toy
-  m_EditorClassIdentifier: ToyShop.Main::ToyShop.Data.ToyData
+  m_Name: toy2
+  m_EditorClassIdentifier: Assembly-CSharp::ToyShop.Data.ToyData
   Id: 2
-  DisplayName: toy
-  Description: game
-  PurchasePrice: 24
-  SellPrice: 25
-  Prefab: {fileID: 8761354123805210278, guid: 23b313f0bc2546e4187106b1f08677eb, type: 3}
-  Icon: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  DisplayName: knight
+  Description: golden knight
+  PurchasePrice: 65
+  SellPrice: 73
+  Prefab: {fileID: 6868941670310409484, guid: bd0ad8a2b274c08428282b63c8da6534, type: 3}
+  Icon: {fileID: 21300000, guid: 2bc0a19d258623f43884129be6373792, type: 3}

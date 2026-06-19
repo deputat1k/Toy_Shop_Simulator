@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: MainDB
   m_EditorClassIdentifier: ToyShop.Main::ToyShop.Data.ToyDatabase
   Toys:
-  - {fileID: 11400000, guid: c651137fbb0502b4c86422ccbaccc40a, type: 2}
   - {fileID: 11400000, guid: 1aba597bd904d5145aead64931c3e45e, type: 2}
+  - {fileID: 11400000, guid: c651137fbb0502b4c86422ccbaccc40a, type: 2}
   - {fileID: 11400000, guid: db3f3516f1eb2924091801e8051a9ccc, type: 2}
+  - {fileID: 11400000, guid: 47288ffe66975bd419db718c26cb2222, type: 2}
