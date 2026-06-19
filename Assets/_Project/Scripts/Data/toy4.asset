@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9875f43bcce268c47ae7bc9cf0eaeb5c, type: 3}
-  m_Name: ter
+  m_Name: toy4
   m_EditorClassIdentifier: ToyShop.Main::ToyShop.Data.ToyData
-  Id: 3
-  DisplayName: rr
-  Description: rr
-  PurchasePrice: 22
-  SellPrice: 25
-  Prefab: {fileID: 8723182105360350684, guid: 27ecee1ffa68bf54c9ab97d4cb8fe292, type: 3}
-  Icon: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+  Id: 4
+  DisplayName: bear
+  Description: big soft bear
+  PurchasePrice: 95
+  SellPrice: 120
+  Prefab: {fileID: 6867739203082086488, guid: 8627d440a2a7b5c47bc5d243607d66c8, type: 3}
+  Icon: {fileID: 21300000, guid: 3e276112b1672544fae30627d80b1c79, type: 3}
