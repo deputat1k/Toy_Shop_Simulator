@@ -1,6 +1,7 @@
 using ToyShop.Core.Controllers;
 using ToyShop.Core.Interfaces;
 using ToyShop.Data;
+using ToyShop.Gameplay;
 using ToyShop.Gameplay.Economy;
 using ToyShop.Gameplay.Environment;
 using ToyShop.Gameplay.Factories;
@@ -17,6 +18,8 @@ using ToyShop.UI.PauseMenu;
 using ToyShop.UI.Tablet;
 using UnityEngine;
 using Zenject;
+using ToyShop.Gameplay.Cart;
+
 
 namespace ToyShop.Core.Installers
 {
@@ -26,7 +29,7 @@ namespace ToyShop.Core.Installers
         [SerializeField] private ToyDatabase _mainToyDatabase;
 
         [Header("UI Prefabs")]
-        [SerializeField] private ShopItemView _shopItemPrefab;
+            
 
         [Header("Item Prefabs")]
         [SerializeField] private BoxContainer _boxPrefab;
@@ -46,9 +49,7 @@ namespace ToyShop.Core.Installers
             Container.BindFactory<BoxContainer, BoxContainer.Factory>()
                      .FromComponentInNewPrefab(_boxPrefab)
                      .AsSingle();
-            Container.BindFactory<Transform, ShopItemView, ShopItemView.Factory>()
-                     .FromComponentInNewPrefab(_shopItemPrefab)
-                     .AsSingle();
+            
 
             // PLAYER
             Container.Bind<IPlayerController>().To<PlayerController>()
@@ -68,10 +69,13 @@ namespace ToyShop.Core.Installers
             Container.BindInterfacesAndSelfTo<EconomyService>().AsSingle();
             Container.BindInterfacesAndSelfTo<CatalogService>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<PurchaseService>().AsSingle();
+            Container.Bind<ICartService>().To<CartService>().AsSingle();
 
             // DELIVERY
             Container.BindInterfacesTo<DeliveryPoint>().FromComponentInHierarchy().AsSingle();
             Container.BindInterfacesTo<DeliveryService>().AsSingle().NonLazy();
+            Container.BindInterfacesTo<CartDeliveryController>()
+         .FromComponentInHierarchy().AsSingle().NonLazy();
 
             // NPC SERVICES
             Container.BindInterfacesAndSelfTo<CheckoutService>().AsSingle();
@@ -113,7 +117,16 @@ namespace ToyShop.Core.Installers
             Container.Bind<PauseMenuView>().FromComponentInHierarchy().AsSingle();
             Container.BindInterfacesTo<PauseMenuPresenter>().AsSingle().NonLazy();
 
-          
+            // SCENE LOADING
+            Container.Bind<ISceneLoader>().To<SceneLoader>().AsSingle();
+
+            // STARTUP (auto-load check on scene entry)
+            Container.BindInterfacesTo<GameStartupController>().AsSingle().NonLazy();
+
+            // HUD VISIBILITY
+            Container.BindInterfacesTo<HudVisibilityController>().AsSingle().NonLazy();
+
+
         }
 
        

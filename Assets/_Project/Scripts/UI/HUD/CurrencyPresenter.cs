@@ -7,37 +7,35 @@ namespace ToyShop.UI.HUD
     public class CurrencyPresenter : IInitializable, IDisposable
     {
         private readonly IEconomyService _economy;
-        private readonly ITabletStateService _gameState;
         private readonly CurrencyView _view;
 
-        public CurrencyPresenter(IEconomyService economy, ITabletStateService gameState, CurrencyView view)
+        private int _previousBalance;
+
+        public CurrencyPresenter(IEconomyService economy, CurrencyView view)
         {
             _economy = economy;
-            _gameState = gameState;
             _view = view;
         }
 
         public void Initialize()
         {
+            _previousBalance = _economy.CurrentBalance;
             _economy.OnBalanceChanged += HandleBalanceChanged;
-            _gameState.OnTabletStateChanged += HandleTabletStateChanged;
 
-            _view.SetBalance(_economy.CurrentBalance);
-            _view.Show();
+            // Set initial display — delta 0 means no popup, no flash
+            _view.UpdateBalance(_previousBalance, 0);
         }
 
         public void Dispose()
         {
             _economy.OnBalanceChanged -= HandleBalanceChanged;
-            _gameState.OnTabletStateChanged -= HandleTabletStateChanged;
         }
 
-        private void HandleBalanceChanged(int newBalance) => _view.SetBalance(newBalance);
-
-        private void HandleTabletStateChanged(bool isOpen)
+        private void HandleBalanceChanged(int newBalance)
         {
-            if (isOpen) _view.Hide();
-            else _view.Show();
+            int delta = newBalance - _previousBalance;
+            _previousBalance = newBalance;
+            _view.UpdateBalance(newBalance, delta);
         }
     }
 }

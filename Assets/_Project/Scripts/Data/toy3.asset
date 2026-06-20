@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9875f43bcce268c47ae7bc9cf0eaeb5c, type: 3}
-  m_Name: test
-  m_EditorClassIdentifier: Assembly-CSharp::ToyShop.Data.ToyData
-  Id: 1
-  DisplayName: test
-  Description: karapyz
-  PurchasePrice: 20
-  SellPrice: 23
-  Prefab: {fileID: 6868941670310409484, guid: bd0ad8a2b274c08428282b63c8da6534, type: 3}
-  Icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: toy3
+  m_EditorClassIdentifier: ToyShop.Main::ToyShop.Data.ToyData
+  Id: 3
+  DisplayName: mouse
+  Description: mouse statuette
+  PurchasePrice: 67
+  SellPrice: 77
+  Prefab: {fileID: 8723182105360350684, guid: 27ecee1ffa68bf54c9ab97d4cb8fe292, type: 3}
+  Icon: {fileID: 21300000, guid: 018d1976fa15b754589b6044a9aab5f4, type: 3}
