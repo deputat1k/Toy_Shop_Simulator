@@ -78,8 +78,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.4
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Speed: 1.4
+  m_Acceleration: 3
   avoidancePriority: 50
   m_AngularSpeed: 360
   m_StoppingDistance: 0.5
@@ -105,7 +105,7 @@ MonoBehaviour:
   _stoppingDistance: 0.5
   _reachThreshold: 0.3
   _rotationSpeed: 360
-  _moveSpeed: 2
+  _minMoveDirectionMagnitude: 0.1
 --- !u!114 &88581618290217555
 MonoBehaviour:
   m_ObjectHideFlags: 0

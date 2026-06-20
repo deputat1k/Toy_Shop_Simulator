@@ -544,7 +544,7 @@ Transform:
   m_GameObject: {fileID: 55362408}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.5899997, y: -0.03, z: -1.21}
+  m_LocalPosition: {x: -1.5899997, y: -0.03, z: -0.56}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5345,7 +5345,7 @@ Transform:
   m_GameObject: {fileID: 1040929684}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.89800024, y: -0.03, z: 0.39000002}
+  m_LocalPosition: {x: -0.306, y: -0.03, z: 0.393}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6686,7 +6686,7 @@ Transform:
   m_GameObject: {fileID: 1495149782}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.89800024, y: -0.03, z: -1.215}
+  m_LocalPosition: {x: -0.32, y: -0.03, z: -0.519}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6722,7 +6722,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6957fca865118479d310a5ffb744da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: ToyShop.Main::ToyShop.Gameplay.Environment.DeliveryPoint
-  _spawnHeightOffset: 1
+  _deliveryZones:
+  - {fileID: 55362409}
+  - {fileID: 984656802}
+  - {fileID: 1040929685}
+  - {fileID: 1495149783}
+  _spawnHeight: 1.8
 --- !u!4 &1495765873
 Transform:
   m_ObjectHideFlags: 0

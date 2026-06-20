@@ -12,13 +12,17 @@ namespace ToyShop.Gameplay.NPC
         [Header("Navigation")]
         [SerializeField] private float _stoppingDistance = 0.5f;
         [SerializeField] private float _reachThreshold = 0.3f;
-        [SerializeField] private float _rotationSpeed = 360f;
-        [SerializeField] private float _moveSpeed = 2f;
+        [SerializeField] private float _rotationSpeed = 540f;
+        [SerializeField] private float _minMoveDirectionMagnitude = 0.1f;
 
         private NavMeshAgent _agent;
         private NpcAnimator _npcAnimator;
         private NpcItemVisual _npcItemVisual;
         private NpcStateMachine _stateMachine;
+
+        // true  -> a state has taken manual control of facing (e.g. looking at a shelf/counter)
+        // false -> body automatically faces movement direction every frame
+        private bool _manualFacingActive;
 
         public ToyData SelectedToy { get; set; }
         public bool HasItem { get; set; }
@@ -37,13 +41,35 @@ namespace ToyShop.Gameplay.NPC
             _npcAnimator = GetComponent<NpcAnimator>();
             _npcItemVisual = GetComponent<NpcItemVisual>();
             _agent.stoppingDistance = _stoppingDistance;
+
+            // Rotation is fully handled by FaceDirection() below.
+            // NavMeshAgent's built-in rotation fought with manual facing
+            // during sharp turns — this caused the visible sliding/drift.
+            _agent.updateRotation = false;
+
             _stateMachine = new NpcStateMachine();
         }
 
         private void Update()
         {
             _stateMachine.CurrentState?.Update(this);
+
+            if (!_manualFacingActive)
+                FaceMovementDirection();
+
             UpdateAnimator();
+        }
+
+        // Rotates the body toward the agent's steering direction every frame.
+        // Replaces NavMeshAgent's internal rotation with one controllable, consistent system.
+        private void FaceMovementDirection()
+        {
+            Vector3 desired = _agent.desiredVelocity;
+            desired.y = 0f;
+
+            if (desired.magnitude < _minMoveDirectionMagnitude) return;
+
+            FaceDirection(transform.position + desired);
         }
 
         public void Initialize(NpcContext context, INpcState initialState)
@@ -114,9 +140,12 @@ namespace ToyShop.Gameplay.NPC
             return Vector3.Angle(transform.forward, direction) <= angleThreshold;
         }
 
+        // Same external contract as before — states don't need any changes.
+        // true  -> auto-face movement direction takes over
+        // false -> state controls facing manually via FaceDirection()
         public void SetAgentRotationEnabled(bool enabled)
         {
-            _agent.updateRotation = enabled;
+            _manualFacingActive = !enabled;
         }
 
         public void ShowItemVisual() => _npcItemVisual?.Show();
