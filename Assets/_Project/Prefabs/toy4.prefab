@@ -203,8 +203,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.90440375, y: 1, z: 1.2443033}
-  m_Center: {x: 0.012497157, y: 0, z: 0.68201596}
+  m_Size: {x: 0.90440375, y: 0.52216065, z: 1.1443927}
+  m_Center: {x: 0.012497157, y: 0.23891968, z: 0.0019910336}
 --- !u!114 &875825582418069070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: ToyShop.Main::ToyShop.Gameplay.Items.KinematicGrabPhysics
   _throwMultiplier: 1
   _heldLayerName: HeldItem
-  _placementHeightOffset: 0.3
+  _placementHeightOffset: 0
 --- !u!1 &9174458656805713808
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,11 +244,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9174458656805713808}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5232333129900035038}
   m_Father: {fileID: 1094847816621738686}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 90}
