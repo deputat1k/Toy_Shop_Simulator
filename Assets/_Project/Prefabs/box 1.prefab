@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ToyShop.Gameplay.Items.BoxContainer
   _toyData: {fileID: 11400000, guid: 1aba597bd904d5145aead64931c3e45e, type: 2}
-  _defaultItemCount: 4
+  _defaultItemCount: 1
   _spawnHeightOffset: 0
 --- !u!114 &5476008349536217864
 MonoBehaviour:

@@ -1,0 +1,26 @@
+{
+  "summary": {
+    "generatedon": "2026-06-25T15:45:32Z",
+    "parser": "MultiReportParser (2x OpenCoverParser)",
+    "assemblies": 1,
+    "classes": 3,
+    "files": 3,
+    "coveredlines": 60,
+    "uncoveredlines": 0,
+    "coverablelines": 60,
+    "totallines": 130,
+    "linecoverage": 100,
+    "coveredbranches": 0,
+    "totalbranches": 0,
+    "coveredmethods": 21,
+    "totalmethods": 21,
+    "methodcoverage": 100
+ },
+  "coverage": {
+    "assemblies": [
+      { "name": "ToyShop.Main", "classes": 3, "coverage": 100, "coveredlines": 60, "coverablelines": 60, "totallines": 130, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 21, "totalmethods": 21, "classesinassembly": [
+        { "name": "ToyShop.Gameplay.Cart.CartItem", "coverage": 100, "coveredlines": 8, "coverablelines": 8, "totallines": 19, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 5, "totalmethods": 5 },
+        { "name": "ToyShop.Gameplay.Cart.CartService", "coverage": 100, "coveredlines": 34, "coverablelines": 34, "totallines": 72, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 10, "totalmethods": 10 },
+        { "name": "ToyShop.Gameplay.Economy.EconomyService", "coverage": 100, "coveredlines": 18, "coverablelines": 18, "totallines": 39, "branchcoverage": null, "coveredbranches": 0, "totalbranches": 0, "methodcoverage": 100, "coveredmethods": 6, "totalmethods": 6 } ] } ]
+  }
+}

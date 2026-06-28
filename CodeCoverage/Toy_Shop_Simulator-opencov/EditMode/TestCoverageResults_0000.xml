@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CoverageSession xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="0.0.0.0">
+  <Summary numSequencePoints="73" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0.0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="4" visitedMethods="0" numMethods="23" />
+  <Modules>
+    <Module>
+      <Summary numSequencePoints="73" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0.0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="4" visitedMethods="0" numMethods="23" />
+      <ModuleTime>0001-01-01T00:00:00</ModuleTime>
+      <ModuleName>ToyShop.Main</ModuleName>
+      <Files>
+        <File uid="1" fullPath="D:/PC/Documents/GitHub/Toy_Shop_Simulator/Assets/_Project/Scripts/Gameplay/Economy/EconomyService.cs" />
+        <File uid="2" fullPath="D:/PC/Documents/GitHub/Toy_Shop_Simulator/Assets/_Project/Scripts/Gameplay/Cart/CartItem.cs" />
+        <File uid="3" fullPath="D:/PC/Documents/GitHub/Toy_Shop_Simulator/Assets/_Project/Scripts/Gameplay/Cart/CartService.cs" />
+      </Files>
+      <Classes>
+        <Class>
+          <Summary numSequencePoints="24" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0.0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="1" visitedMethods="0" numMethods="6" />
+          <FullName>ToyShop.Gameplay.Economy.EconomyService</FullName>
+          <Methods>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="true" isSetter="false">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663750</MetadataToken>
+              <Name>System.Int32 ToyShop.Gameplay.Economy.EconomyService::get_CurrentBalance()</Name>
+              <FileRef uid="1" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="489" ordinal="0" offset="0" sl="8" sc="37" el="8" ec="37" bec="0" bev="0" fileid="1" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="true">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663751</MetadataToken>
+              <Name>System.Void ToyShop.Gameplay.Economy.EconomyService::set_CurrentBalance(System.Int32)</Name>
+              <FileRef uid="1" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="490" ordinal="0" offset="0" sl="8" sc="42" el="8" ec="42" bec="0" bev="0" fileid="1" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="9" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663754</MetadataToken>
+              <Name>System.Boolean ToyShop.Gameplay.Economy.EconomyService::TrySpend(System.Int32)</Name>
+              <FileRef uid="1" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="491" ordinal="0" offset="0" sl="13" sc="9" el="13" ec="9" bec="0" bev="0" fileid="1" />
+                <SequencePoint vc="0" uspid="492" ordinal="0" offset="1" sl="14" sc="13" el="14" ec="13" bec="0" bev="0" fileid="1" />
+                <SequencePoint vc="0" uspid="493" ordinal="0" offset="12" sl="14" sc="30" el="14" ec="30" bec="0" bev="0" fileid="1" />
+                <SequencePoint vc="0" uspid="494" ordinal="0" offset="16" sl="15" sc="13" el="15" ec="13" bec="0" bev="0" fileid="1" />
+                <SequencePoint vc="0" uspid="495" ordinal="0" offset="29" sl="15" sc="42" el="15" ec="42" bec="0" bev="0" fileid="1" />
+                <SequencePoint vc="0" uspid="496" ordinal="0" offset="33" sl="17" sc="13" el="17" ec="13" bec="0" bev="0" fileid="1" />
+                <SequencePoint vc="0" uspid="497" ordinal="0" offset="48" sl="18" sc="13" el="18" ec="13" bec="0" bev="0" fileid="1" />
+                <SequencePoint vc="0" uspid="498" ordinal="0" offset="72" sl="19" sc="13" el="19" ec="13" bec="0" bev="0" fileid="1" />
+                <SequencePoint vc="0" uspid="499" ordinal="0" offset="76" sl="20" sc="9" el="20" ec="9" bec="0" bev="0" fileid="1" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="6" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663755</MetadataToken>
+              <Name>System.Void ToyShop.Gameplay.Economy.EconomyService::Add(System.Int32)</Name>
+              <FileRef uid="1" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="500" ordinal="0" offset="0" sl="23" sc="9" el="23" ec="9" bec="0" bev="0" fileid="1" />
+                <SequencePoint vc="0" uspid="501" ordinal="0" offset="1" sl="24" sc="13" el="24" ec="13" bec="0" bev="0" fileid="1" />
+                <SequencePoint vc="0" uspid="502" ordinal="0" offset="12" sl="24" sc="30" el="24" ec="30" bec="0" bev="0" fileid="1" />
+                <SequencePoint vc="0" uspid="503" ordinal="0" offset="14" sl="26" sc="13" el="26" ec="13" bec="0" bev="0" fileid="1" />
+                <SequencePoint vc="0" uspid="504" ordinal="0" offset="29" sl="27" sc="13" el="27" ec="13" bec="0" bev="0" fileid="1" />
+                <SequencePoint vc="0" uspid="505" ordinal="0" offset="53" sl="28" sc="9" el="28" ec="9" bec="0" bev="0" fileid="1" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="6" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663756</MetadataToken>
+              <Name>System.Void ToyShop.Gameplay.Economy.EconomyService::SetBalance(System.Int32)</Name>
+              <FileRef uid="1" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="506" ordinal="0" offset="0" sl="32" sc="9" el="32" ec="9" bec="0" bev="0" fileid="1" />
+                <SequencePoint vc="0" uspid="507" ordinal="0" offset="1" sl="33" sc="13" el="33" ec="13" bec="0" bev="0" fileid="1" />
+                <SequencePoint vc="0" uspid="508" ordinal="0" offset="9" sl="33" sc="29" el="33" ec="29" bec="0" bev="0" fileid="1" />
+                <SequencePoint vc="0" uspid="509" ordinal="0" offset="11" sl="35" sc="13" el="35" ec="13" bec="0" bev="0" fileid="1" />
+                <SequencePoint vc="0" uspid="510" ordinal="0" offset="19" sl="36" sc="13" el="36" ec="13" bec="0" bev="0" fileid="1" />
+                <SequencePoint vc="0" uspid="511" ordinal="0" offset="43" sl="37" sc="9" el="37" ec="9" bec="0" bev="0" fileid="1" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="true" isStatic="false" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663757</MetadataToken>
+              <Name>ToyShop.Gameplay.Economy.EconomyService::EconomyService()</Name>
+              <FileRef uid="1" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="512" ordinal="0" offset="0" sl="8" sc="59" el="8" ec="59" bec="0" bev="0" fileid="1" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+          </Methods>
+        </Class>
+        <Class>
+          <Summary numSequencePoints="9" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0.0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="1" visitedMethods="0" numMethods="5" />
+          <FullName>ToyShop.Gameplay.Cart.CartItem</FullName>
+          <Methods>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="true" isSetter="false">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663758</MetadataToken>
+              <Name>ToyShop.Data.ToyData ToyShop.Gameplay.Cart.CartItem::get_ToyData()</Name>
+              <FileRef uid="2" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="513" ordinal="0" offset="0" sl="7" sc="34" el="7" ec="34" bec="0" bev="0" fileid="2" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="true" isSetter="false">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663759</MetadataToken>
+              <Name>System.Int32 ToyShop.Gameplay.Cart.CartItem::get_Quantity()</Name>
+              <FileRef uid="2" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="514" ordinal="0" offset="0" sl="8" sc="31" el="8" ec="31" bec="0" bev="0" fileid="2" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="true">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663760</MetadataToken>
+              <Name>System.Void ToyShop.Gameplay.Cart.CartItem::set_Quantity(System.Int32)</Name>
+              <FileRef uid="2" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="515" ordinal="0" offset="0" sl="8" sc="36" el="8" ec="36" bec="0" bev="0" fileid="2" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="true" isSetter="false">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663761</MetadataToken>
+              <Name>System.Int32 ToyShop.Gameplay.Cart.CartItem::get_LineTotal()</Name>
+              <FileRef uid="2" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="516" ordinal="0" offset="0" sl="11" sc="33" el="11" ec="33" bec="0" bev="0" fileid="2" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="true" isStatic="false" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="5" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663762</MetadataToken>
+              <Name>ToyShop.Gameplay.Cart.CartItem::CartItem(ToyShop.Data.ToyData, System.Int32)</Name>
+              <FileRef uid="2" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="517" ordinal="0" offset="0" sl="13" sc="9" el="13" ec="9" bec="0" bev="0" fileid="2" />
+                <SequencePoint vc="0" uspid="518" ordinal="0" offset="7" sl="14" sc="9" el="14" ec="9" bec="0" bev="0" fileid="2" />
+                <SequencePoint vc="0" uspid="519" ordinal="0" offset="8" sl="15" sc="13" el="15" ec="13" bec="0" bev="0" fileid="2" />
+                <SequencePoint vc="0" uspid="520" ordinal="0" offset="15" sl="16" sc="13" el="16" ec="13" bec="0" bev="0" fileid="2" />
+                <SequencePoint vc="0" uspid="521" ordinal="0" offset="23" sl="17" sc="9" el="17" ec="9" bec="0" bev="0" fileid="2" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+          </Methods>
+        </Class>
+        <Class>
+          <Summary numSequencePoints="38" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0.0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="1" visitedMethods="0" numMethods="10" />
+          <FullName>ToyShop.Gameplay.Cart.CartService</FullName>
+          <Methods>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="true" isSetter="false">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663763</MetadataToken>
+              <Name>System.Collections.Generic.IReadOnlyList[CartItem] ToyShop.Gameplay.Cart.CartService::get_Items()</Name>
+              <FileRef uid="3" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="522" ordinal="0" offset="0" sl="15" sc="49" el="15" ec="49" bec="0" bev="0" fileid="3" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="true" isSetter="false">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663764</MetadataToken>
+              <Name>System.Int32 ToyShop.Gameplay.Cart.CartService::get_TotalPrice()</Name>
+              <FileRef uid="3" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="523" ordinal="0" offset="0" sl="17" sc="34" el="17" ec="34" bec="0" bev="0" fileid="3" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="true" isSetter="false">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663765</MetadataToken>
+              <Name>System.Int32 ToyShop.Gameplay.Cart.CartService::get_TotalItems()</Name>
+              <FileRef uid="3" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="524" ordinal="0" offset="0" sl="18" sc="34" el="18" ec="34" bec="0" bev="0" fileid="3" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="12" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663768</MetadataToken>
+              <Name>System.Void ToyShop.Gameplay.Cart.CartService::AddItem(ToyShop.Data.ToyData)</Name>
+              <FileRef uid="3" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="525" ordinal="0" offset="0" sl="23" sc="9" el="23" ec="9" bec="0" bev="0" fileid="3" />
+                <SequencePoint vc="0" uspid="526" ordinal="0" offset="1" sl="24" sc="13" el="24" ec="13" bec="0" bev="0" fileid="3" />
+                <SequencePoint vc="0" uspid="527" ordinal="0" offset="12" sl="24" sc="30" el="24" ec="30" bec="0" bev="0" fileid="3" />
+                <SequencePoint vc="0" uspid="528" ordinal="0" offset="14" sl="26" sc="13" el="26" ec="13" bec="0" bev="0" fileid="3" />
+                <SequencePoint vc="0" uspid="529" ordinal="0" offset="37" sl="27" sc="13" el="27" ec="13" bec="0" bev="0" fileid="3" />
+                <SequencePoint vc="0" uspid="530" ordinal="0" offset="38" sl="28" sc="17" el="28" ec="17" bec="0" bev="0" fileid="3" />
+                <SequencePoint vc="0" uspid="531" ordinal="0" offset="55" sl="29" sc="13" el="29" ec="13" bec="0" bev="0" fileid="3" />
+                <SequencePoint vc="0" uspid="532" ordinal="0" offset="58" sl="31" sc="13" el="31" ec="13" bec="0" bev="0" fileid="3" />
+                <SequencePoint vc="0" uspid="533" ordinal="0" offset="59" sl="32" sc="17" el="32" ec="17" bec="0" bev="0" fileid="3" />
+                <SequencePoint vc="0" uspid="534" ordinal="0" offset="84" sl="33" sc="13" el="33" ec="13" bec="0" bev="0" fileid="3" />
+                <SequencePoint vc="0" uspid="535" ordinal="0" offset="85" sl="35" sc="13" el="35" ec="13" bec="0" bev="0" fileid="3" />
+                <SequencePoint vc="0" uspid="536" ordinal="0" offset="103" sl="36" sc="9" el="36" ec="9" bec="0" bev="0" fileid="3" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="6" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663769</MetadataToken>
+              <Name>System.Void ToyShop.Gameplay.Cart.CartService::RemoveItem(System.String)</Name>
+              <FileRef uid="3" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="537" ordinal="0" offset="0" sl="39" sc="9" el="39" ec="9" bec="0" bev="0" fileid="3" />
+                <SequencePoint vc="0" uspid="538" ordinal="0" offset="1" sl="40" sc="13" el="40" ec="13" bec="0" bev="0" fileid="3" />
+                <SequencePoint vc="0" uspid="539" ordinal="0" offset="20" sl="40" sc="45" el="40" ec="45" bec="0" bev="0" fileid="3" />
+                <SequencePoint vc="0" uspid="540" ordinal="0" offset="22" sl="42" sc="13" el="42" ec="13" bec="0" bev="0" fileid="3" />
+                <SequencePoint vc="0" uspid="541" ordinal="0" offset="35" sl="43" sc="13" el="43" ec="13" bec="0" bev="0" fileid="3" />
+                <SequencePoint vc="0" uspid="542" ordinal="0" offset="53" sl="44" sc="9" el="44" ec="9" bec="0" bev="0" fileid="3" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="8" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663770</MetadataToken>
+              <Name>System.Void ToyShop.Gameplay.Cart.CartService::ChangeQuantity(System.String, System.Int32)</Name>
+              <FileRef uid="3" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="543" ordinal="0" offset="0" sl="47" sc="9" el="47" ec="9" bec="0" bev="0" fileid="3" />
+                <SequencePoint vc="0" uspid="544" ordinal="0" offset="1" sl="48" sc="13" el="48" ec="13" bec="0" bev="0" fileid="3" />
+                <SequencePoint vc="0" uspid="545" ordinal="0" offset="22" sl="48" sc="64" el="48" ec="64" bec="0" bev="0" fileid="3" />
+                <SequencePoint vc="0" uspid="546" ordinal="0" offset="24" sl="50" sc="13" el="50" ec="13" bec="0" bev="0" fileid="3" />
+                <SequencePoint vc="0" uspid="547" ordinal="0" offset="39" sl="52" sc="13" el="52" ec="13" bec="0" bev="0" fileid="3" />
+                <SequencePoint vc="0" uspid="548" ordinal="0" offset="55" sl="53" sc="17" el="53" ec="17" bec="0" bev="0" fileid="3" />
+                <SequencePoint vc="0" uspid="549" ordinal="0" offset="68" sl="55" sc="13" el="55" ec="13" bec="0" bev="0" fileid="3" />
+                <SequencePoint vc="0" uspid="550" ordinal="0" offset="86" sl="56" sc="9" el="56" ec="9" bec="0" bev="0" fileid="3" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="6" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663771</MetadataToken>
+              <Name>System.Void ToyShop.Gameplay.Cart.CartService::Clear()</Name>
+              <FileRef uid="3" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="551" ordinal="0" offset="0" sl="59" sc="9" el="59" ec="9" bec="0" bev="0" fileid="3" />
+                <SequencePoint vc="0" uspid="552" ordinal="0" offset="1" sl="60" sc="13" el="60" ec="13" bec="0" bev="0" fileid="3" />
+                <SequencePoint vc="0" uspid="553" ordinal="0" offset="19" sl="60" sc="36" el="60" ec="36" bec="0" bev="0" fileid="3" />
+                <SequencePoint vc="0" uspid="554" ordinal="0" offset="21" sl="62" sc="13" el="62" ec="13" bec="0" bev="0" fileid="3" />
+                <SequencePoint vc="0" uspid="555" ordinal="0" offset="33" sl="63" sc="13" el="63" ec="13" bec="0" bev="0" fileid="3" />
+                <SequencePoint vc="0" uspid="556" ordinal="0" offset="51" sl="64" sc="9" el="64" ec="9" bec="0" bev="0" fileid="3" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663772</MetadataToken>
+              <Name>System.Boolean ToyShop.Gameplay.Cart.CartService::HasItem(System.String)</Name>
+              <FileRef uid="3" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="557" ordinal="0" offset="0" sl="67" sc="13" el="67" ec="13" bec="0" bev="0" fileid="3" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663773</MetadataToken>
+              <Name>ToyShop.Gameplay.Cart.CartItem ToyShop.Gameplay.Cart.CartService::GetItem(System.String)</Name>
+              <FileRef uid="3" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="558" ordinal="0" offset="0" sl="70" sc="13" el="70" ec="13" bec="0" bev="0" fileid="3" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="true" isStatic="false" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100663774</MetadataToken>
+              <Name>ToyShop.Gameplay.Cart.CartService::CartService()</Name>
+              <FileRef uid="3" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="559" ordinal="0" offset="0" sl="12" sc="9" el="12" ec="9" bec="0" bev="0" fileid="3" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+          </Methods>
+        </Class>
+        <Class>
+          <Summary numSequencePoints="2" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0.0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="1" visitedMethods="0" numMethods="2" />
+          <FullName>ToyShop.Gameplay.Cart.CartService/&lt;&gt;c</FullName>
+          <Methods>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100664066</MetadataToken>
+              <Name>System.Int32 ToyShop.Gameplay.Cart.CartService/&lt;&gt;c::&lt;get_TotalPrice&gt;b__4_0(ToyShop.Gameplay.Cart.CartItem)</Name>
+              <FileRef uid="3" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="560" ordinal="0" offset="0" sl="17" sc="60" el="17" ec="60" bec="0" bev="0" fileid="3" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+            <Method visited="false" cyclomaticComplexity="0" nPathComplexity="0" sequenceCoverage="0.0" branchCoverage="0" crapScore="0" isConstructor="false" isStatic="false" isGetter="false" isSetter="false">
+              <Summary numSequencePoints="1" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0.0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="1" />
+              <MetadataToken>100664067</MetadataToken>
+              <Name>System.Int32 ToyShop.Gameplay.Cart.CartService/&lt;&gt;c::&lt;get_TotalItems&gt;b__6_0(ToyShop.Gameplay.Cart.CartItem)</Name>
+              <FileRef uid="3" />
+              <SequencePoints>
+                <SequencePoint vc="0" uspid="561" ordinal="0" offset="0" sl="18" sc="60" el="18" ec="60" bec="0" bev="0" fileid="3" />
+              </SequencePoints>
+              <BranchPoints />
+            </Method>
+          </Methods>
+        </Class>
+      </Classes>
+    </Module>
+  </Modules>
+</CoverageSession>

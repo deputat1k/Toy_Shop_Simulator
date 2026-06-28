@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CoverageReport scope="Summary">
+  <Summary>
+    <Generatedon>25.06.2026 - 18:45:32</Generatedon>
+    <Parser>MultiReportParser (2x OpenCoverParser)</Parser>
+    <Assemblies>1</Assemblies>
+    <Classes>3</Classes>
+    <Files>3</Files>
+    <Coveredlines>60</Coveredlines>
+    <Uncoveredlines>0</Uncoveredlines>
+    <Coverablelines>60</Coverablelines>
+    <Totallines>130</Totallines>
+    <Linecoverage>100</Linecoverage>
+    <Coveredbranches>0</Coveredbranches>
+    <Totalbranches>0</Totalbranches>
+    <Coveredmethods>21</Coveredmethods>
+    <Totalmethods>21</Totalmethods>
+    <Methodcoverage>100</Methodcoverage>
+  </Summary>
+  <Coverage>
+    <Assembly name="ToyShop.Main" classes="3" coverage="100" coveredlines="60" coverablelines="60" totallines="130" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="21" totalmethods="21" methodcoverage="100">
+      <Class name="ToyShop.Gameplay.Cart.CartItem" coverage="100" coveredlines="8" coverablelines="8" totallines="19" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="5" totalmethods="5" methodcoverage="100" />
+      <Class name="ToyShop.Gameplay.Cart.CartService" coverage="100" coveredlines="34" coverablelines="34" totallines="72" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="10" totalmethods="10" methodcoverage="100" />
+      <Class name="ToyShop.Gameplay.Economy.EconomyService" coverage="100" coveredlines="18" coverablelines="18" totallines="39" branchcoverage="" coveredbranches="0" totalbranches="0" coveredmethods="6" totalmethods="6" methodcoverage="100" />
+    </Assembly>
+  </Coverage>
+</CoverageReport>
